@@ -8,12 +8,8 @@
                         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-                        
-        
         <property name="java-output-path" value="/PC3R_Projet/build/classes"/>
         <property name="context-root" value="/"/>
-                    
-    
     </wb-module>
         
 
