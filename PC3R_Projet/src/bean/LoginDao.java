@@ -5,7 +5,7 @@ public class LoginDao {
 	public static boolean validate(LoginBean bean){
 		boolean status=false;
 		try{
-			Connection con=ConnectionProvider.getCon();
+			Connection con = ConnectionProvider.getCon();
 			
 			PreparedStatement ps=con.prepareStatement("select * from user432 where email=? and pass=?");
 			ps.setString(1,bean.getEmail());
