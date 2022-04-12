@@ -22,9 +22,10 @@ public class IndexServlet extends HttpServlet {
 		
 		if(User.isConnected(request.getSession())) {
 			response.sendRedirect("/game");
-		} else {
-			request.getRequestDispatcher("/WEB-INF/index.jsp").include(request, response);
+			return;
 		}
+		
+		request.getRequestDispatcher("/WEB-INF/index.jsp").include(request, response);
 		
 	}
 	

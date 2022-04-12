@@ -20,11 +20,14 @@ public class GameServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(User.isConnected(request.getSession())) {
-			request.getRequestDispatcher("/WEB-INF/game.jsp").include(request, response);
-		} else {
+		if(!User.isConnected(request.getSession())) {
 			response.sendRedirect("/");
+			return;
 		}
+		
+		
+		
+		request.getRequestDispatcher("/WEB-INF/game.jsp").include(request, response);
 		
 	}
 
