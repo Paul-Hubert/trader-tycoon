@@ -5,16 +5,16 @@ import static database.Provider.*;
 public class ConnectionProvider {
 	static Connection con = null;
 	
-	static {
-		try{
-			Class.forName(DRIVER);
-			con = DriverManager.getConnection(CONNECTION_URL,USERNAME,PASSWORD);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	public static void connect() throws Exception {
+		Class.forName(DRIVER);
+		con = DriverManager.getConnection(CONNECTION_URL,USERNAME,PASSWORD);
 	}
 	
-	public static Connection getCon(){
+	public static Connection getCon() throws Exception {
+		if(con == null) {
+			connect();
+			if(con == null) throw new SQLException("Could not create SQL connection");
+		}
 		return con;
 	}
 }

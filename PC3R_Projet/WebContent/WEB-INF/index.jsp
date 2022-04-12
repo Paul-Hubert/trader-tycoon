@@ -27,7 +27,7 @@
 			<div class="row">
 			
 				<div class="col-md-6">
-					<form  method="post" action="/login">
+					<form  method="post" action="/">
 						<div class="form-group">
 						    <label for="login-user">Username</label>
 						    <input type="text" class="form-control" id="login-user" name="user" placeholder="Enter username">
@@ -36,13 +36,13 @@
 						    <label for="login-pass">Password</label>
 						    <input type="password" class="form-control" id="login-pass" name="pass" placeholder="Enter password">
 						</div>
-		  				<button type="submit" value="login" class="btn btn-primary">Login</button>
+		  				<button type="submit" name="action" value="login" class="btn btn-primary">Login</button>
 					</form>
 				</div>
 				
 				
 				<div class="col-md-6">
-					<form method="post" action="/signup">
+					<form method="post" action="/">
 						<div class="form-group">
 						    <label for="signup-user">Username</label>
 						    <input type="text" class="form-control" id="signup-user" name="user" placeholder="Enter username">
@@ -51,7 +51,7 @@
 						    <label for="signup-pass">Password</label>
 						    <input type="password" class="form-control" id="signup-pass" name="pass" placeholder="Enter password">
 						</div>
-		  				<button type="submit" value="signup" class="btn btn-primary">Sign up</button>
+		  				<button type="submit" name="action" value="signup" class="btn btn-primary">Sign up</button>
 					</form>
 				</div>
 			
