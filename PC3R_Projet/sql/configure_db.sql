@@ -11,4 +11,3 @@ CREATE TABLE users (
 	pass VARCHAR(256) NOT NULL,
 	PRIMARY KEY (id)
 );
-INSERT INTO users (user, pass) VALUES ("test", "test");
