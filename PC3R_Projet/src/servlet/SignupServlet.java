@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import connection.Login;
+import connection.Signup;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/signup")
+public class SignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-    public LoginServlet() {
+    public SignupServlet() {
         super();
     }
 
@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 
 		try {
 			
-			Login.validate(request);
+			Signup.validate(request);
 		
 		} catch (Exception e) {
 			e.printStackTrace();
