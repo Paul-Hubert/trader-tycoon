@@ -18,8 +18,7 @@ public class User {
 	private static final long startingMoney = 100000;
 	
 	public final int id;
-	public final String username;
-	public final String password;
+	public final String name;
 	public final long money;
 	public final Production production;
 	
@@ -35,8 +34,7 @@ public class User {
 		if(!rs.next()) throw new SQLException("No user with this id");
 		
 		this.id = id;
-		this.username = rs.getString("user");
-		this.password = rs.getString("pass");
+		this.name = rs.getString("user");
 		this.money = rs.getLong("money");
 		this.production = new Production(id);
 	}
@@ -142,10 +140,7 @@ public class User {
 		return id;
 	}
 	public String getUsername() {
-		return username;
-	}
-	public String getPassword() {
-		return password;
+		return name;
 	}
 	
 }

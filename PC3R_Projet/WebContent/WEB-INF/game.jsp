@@ -1,3 +1,5 @@
+<%@ page import="data.*" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,11 +24,33 @@
 			}
 			%>
 			
+			<%
+			User user = (User) request.getAttribute("user");	
+			%>
+			
 			<h2>Game</h2>
+			
+			<h4>
+				<%= user.name %>
+			</h4>
 			
 			<form method="post" action="/">
   				<button type="submit" name="action" value="logout" class="btn btn-primary">Log out</button>
 			</form>
+			
+			<%
+			for(Resource res : Resource.values()) {
+				ResourceProduction rp = user.production.get(res);
+			%>
+			
+			<div>
+				<%= rp.count %> <%= res %>
+				
+			</div>
+			
+			<%	
+			}
+			%>
 			
 			
 		</div>
