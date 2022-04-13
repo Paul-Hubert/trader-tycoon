@@ -78,12 +78,13 @@ public class User {
 		
 		String pass = request.getParameter("pass");
 		if(pass == null || pass == "") throw new InputMismatchException("Password not set");
+		var hash = PasswordHash.hash(pass);
 		
 		Connection con = ConnectionProvider.getCon();
 		
 		PreparedStatement ps=con.prepareStatement("select * from users where user=? and pass=?;");
 		ps.setString(1, user);
-		ps.setString(2, pass);
+		ps.setBytes(2, hash);
 		
 		ResultSet rs=ps.executeQuery();
 		
@@ -97,19 +98,26 @@ public class User {
 	
 	public static void signup(HttpServletRequest request) throws Exception {
 		
+		try {
+			login(request);
+		} catch(Exception e) {}
+		
+		if(isConnected(request.getSession())) {
+			return;
+		}
+		
 		String user = request.getParameter("user");
 		if(user == null || user == "") throw new InputMismatchException("Username not set");
 		
 		String pass = request.getParameter("pass");
 		if(pass == null || pass == "") throw new InputMismatchException("Password not set");
+		var hash = PasswordHash.hash(pass);
 		
 		Connection con = ConnectionProvider.getCon();
 		
-		if(con == null) throw new SQLException("Could not create SQL connection");
-		
 		PreparedStatement ps = con.prepareStatement("insert into users (user, pass) values (?, ?);", Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, user);
-		ps.setString(2, pass);
+		ps.setBytes(2, hash);
 		
 		int rows = ps.executeUpdate();
 		
