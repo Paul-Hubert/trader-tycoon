@@ -1,4 +1,4 @@
-package database;
+package data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,25 +10,20 @@ import java.util.InputMismatchException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import database.ConnectionProvider;
+import database.PasswordHash;
+
 public class User {
 	
-	private final int id;
-	private final String username;
-	private final String password;
+	private static final long startingMoney = 100000;
 	
-	private User(int id, String username, String password) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
-	}
+	public final int id;
+	public final String username;
+	public final String password;
+	public final long money;
+	public final Production production;
 	
-	private static User create(ResultSet rs) throws SQLException {
-		
-		return new User(rs.getInt("id"), rs.getString("user"), rs.getString("pass"));
-		
-	}
-	
-	private static User create(int id) throws Exception {
+	private User(int id) throws Exception {
 		
 		Connection con = ConnectionProvider.getCon();
 		
@@ -39,8 +34,11 @@ public class User {
 		
 		if(!rs.next()) throw new SQLException("No user with this id");
 		
-		return create(rs);
-		
+		this.id = id;
+		this.username = rs.getString("user");
+		this.password = rs.getString("pass");
+		this.money = rs.getLong("money");
+		this.production = new Production(id);
 	}
 	
 	private static void connect(HttpSession session, int id) {
@@ -68,7 +66,7 @@ public class User {
 	}
 	
 	public static User getConnected(HttpSession session) throws Exception {
-		return create(getConnectedID(session));
+		return new User(getConnectedID(session));
 	}
 	
 	public static void login(HttpServletRequest request) throws Exception {
@@ -115,9 +113,10 @@ public class User {
 		
 		Connection con = ConnectionProvider.getCon();
 		
-		PreparedStatement ps = con.prepareStatement("insert into users (user, pass) values (?, ?);", Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement ps = con.prepareStatement("insert into users (user, pass, money) values (?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, user);
 		ps.setBytes(2, hash);
+		ps.setLong(3, startingMoney);
 		
 		int rows = ps.executeUpdate();
 		

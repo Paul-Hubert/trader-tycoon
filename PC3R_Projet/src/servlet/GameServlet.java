@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import database.User;
+import data.User;
 
 @WebServlet("/game")
 public class GameServlet extends HttpServlet {
@@ -25,7 +25,17 @@ public class GameServlet extends HttpServlet {
 			return;
 		}
 		
+		try {
 		
+			User user = User.getConnected(request.getSession());
+			request.setAttribute("user", user);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			request.setAttribute("error", e.getMessage());
+			
+		}
 		
 		request.getRequestDispatcher("/WEB-INF/game.jsp").include(request, response);
 		
