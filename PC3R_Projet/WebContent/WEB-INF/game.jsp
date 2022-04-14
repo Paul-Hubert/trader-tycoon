@@ -38,25 +38,50 @@
   				<button type="submit" name="action" value="logout" class="btn btn-primary">Log out</button>
 			</form>
 			
-			<%
-			for(Resource res : Resource.values()) {
-				ResourceProduction rp = user.production.get(res);
-			%>
-			
-			<div id=<%=res %> class="card" style="width: 18rem;">
-			  <div class="card-body">
-			    <h5 class="card-title"><%=res %></h5>
-			    <h6 class="card-subtitle1 mb-2 text-muted">count : <%=rp.count %></h6>
-			    <h6 class="card-subtitle2 mb-2 text-muted">production : <%=rp.production %></h6>
-				<button id="b1" type="button" class="btn btn-dark">bouton 1</button>
-				<button id="b2" type="button" class="btn btn-dark">bouton 2</button>
-			  </div>
-			</div>
+						
+			<ul class="scroll" style="position: relative; height: 500px; overflow-y: scroll;">
+				<%
+				for(Resource res : Resource.values()) {
+					ResourceProduction rp = user.production.get(res);
+				%>
+				<li>
+				<div id=<%=res %> class="card" style="width: 18rem;">
+				  <div class="card-body">
+				    <h5 class="card-title"><%=res %></h5>
+				    <h6 class="card-subtitle1 mb-2 text-muted">count : <%=rp.count %></h6>
+				    <h6 class="card-subtitle2 mb-2 text-muted">production : <%=rp.production %></h6>
+					<button id="b1" type="button" class="btn btn-dark">bouton 1</button>
+					<button id="b2" type="button" class="btn btn-dark">bouton 2</button>
+				  </div>
+				</div>
+				</li><li>
+				<div id=<%=res %> class="card" style="width: 18rem;">
+				  <div class="card-body">
+				    <h5 class="card-title"><%=res %></h5>
+				    <h6 class="card-subtitle1 mb-2 text-muted">count : <%=rp.count %></h6>
+				    <h6 class="card-subtitle2 mb-2 text-muted">production : <%=rp.production %></h6>
+					<button id="b1" type="button" class="btn btn-dark">bouton 1</button>
+					<button id="b2" type="button" class="btn btn-dark">bouton 2</button>
+				  </div>
+				</div>
+				</li><li>
+				<div id=<%=res %> class="card" style="width: 18rem;">
+				  <div class="card-body">
+				    <h5 class="card-title"><%=res %></h5>
+				    <h6 class="card-subtitle1 mb-2 text-muted">count : <%=rp.count %></h6>
+				    <h6 class="card-subtitle2 mb-2 text-muted">production : <%=rp.production %></h6>
+					<button id="b1" type="button" class="btn btn-dark">bouton 1</button>
+					<button id="b2" type="button" class="btn btn-dark">bouton 2</button>
+				  </div>
+				</div>
+				</li>
 				
-			
-			<%	
-			}
-			%>
+					
+				
+				<%	
+				}
+				%>
+			</ul>
 			
 			
 		</div>
