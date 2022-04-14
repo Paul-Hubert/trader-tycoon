@@ -13,7 +13,9 @@
 		<script src="/js/common.js"></script>
 		<meta charset="utf-8">
 	</head>
-	<body>
+	<body class="bg-dark text-white">
+
+
 		<div class="container">
 			
 			<%
@@ -32,32 +34,37 @@
 			User user = (User) request.getAttribute("user");	
 			%>
 			
-			<h2>Game</h2>
+			<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-secondary">
+	  		<span class="left navbar-brand">Game</span>
+	    	<span class="left navbar-text"> <%= user.name %> </span>
+	    	<span class="left navbar-text"> <%= user.money %> $</span>
+	    	<form class="right" method="post" action="/">
+  				<button type="submit" name="action" value="logout" class="right btn btn-secondary">Log out</button>
+			</form>
+			</nav>
 			
-			<h4>
-				<%= user.name %>
-			</h4>
+			
 			
 			<form method="post" action="/">
-  				<button type="submit" name="action" value="logout" class="btn btn-primary">Log out</button>
+  				<button type="submit" name="action" value="logout" class="btn btn-secondary">Log out</button>
 			</form>
 			
 						
-			<ul class="scroll">
+			<div class="scroll group-list bg-dark">
 			
 				<%
 				for(Resource res : Resource.values()) {
 					ResourceProduction rp = user.production.get(res);
 				%>
 				
-				<li>
-					<div id=<%=res %> class="card" style="width: 18rem;">
+				<li class="list-group-item list-group-item-dark bg-dark">
+					<div id=<%=res %> class="card text-white dark mb-3" style="width: 18rem;">
 					  <div class="card-body">
 					    <h5 class="card-title"><%=res %></h5>
 					    <h6 class="card-subtitle1 mb-2 text-muted">count : <%=rp.count %></h6>
 					    <h6 class="card-subtitle2 mb-2 text-muted">production : <%=rp.production %></h6>
-						<button id="b1" type="button" class="btn btn-dark">bouton 1</button>
-						<button id="b2" type="button" class="btn btn-dark">bouton 2</button>
+						<button id="b1" type="button" class="btn btn-secondary">bouton 1</button>
+						<button id="b2" type="button" class="btn btn-secondary">bouton 2</button>
 					  </div>
 					</div>
 				</li>
@@ -66,7 +73,28 @@
 				}
 				%>
 				
-			</ul>
+			</div>
+			
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
+			<h1>blablabla</h1>
 			
 			
 		</div>
