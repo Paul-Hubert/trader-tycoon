@@ -43,10 +43,16 @@
 				ResourceProduction rp = user.production.get(res);
 			%>
 			
-			<div>
-				<%= rp.count %> <%= res %>
-				
+			<div id=<%=res %> class="card" style="width: 18rem;">
+			  <div class="card-body">
+			    <h5 class="card-title"><%=res %></h5>
+			    <h6 class="card-subtitle1 mb-2 text-muted">count : <%=rp.count %></h6>
+			    <h6 class="card-subtitle2 mb-2 text-muted">production : <%=rp.production %></h6>
+				<button id="b1" type="button" class="btn btn-dark">bouton 1</button>
+				<button id="b2" type="button" class="btn btn-dark">bouton 2</button>
+			  </div>
 			</div>
+				
 			
 			<%	
 			}
