@@ -1,1 +1,4 @@
 /.metadata/
+.settings
+PC3R_Projet/.classpath
+build
