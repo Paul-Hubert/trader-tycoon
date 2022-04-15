@@ -39,5 +39,15 @@ public class Production {
 		}
 		return rp;
 	}
+
+	public void update(User user) throws Exception {
+		
+		for(var res : resources.keySet()) {
+			var rp = resources.get(res);
+			
+			rp.update(user);
+		}
+		
+	}
 	
 }

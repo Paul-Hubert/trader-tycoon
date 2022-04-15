@@ -46,10 +46,12 @@ public class ResourceProduction {
 			ps.setLong(5, research);
 		}
 		else {
-			ps = con.prepareStatement("update production set production=? where user_id=? and resource=?;");
-			ps.setLong(1, production);
-			ps.setLong(2, user.id);
-			ps.setInt(3, resource.getID());
+			ps = con.prepareStatement("update production set count=?, production=?, research=? where user_id=? and resource=?;");
+			ps.setLong(1, count);
+			ps.setLong(2, production);
+			ps.setLong(3, research);
+			ps.setLong(4, user.id);
+			ps.setInt(5, resource.getID());
 		}
 
 		ps.executeUpdate();
