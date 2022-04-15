@@ -50,19 +50,17 @@ public class World {
 				
 			} else {
 				
-				long max = 0;
+				long max = rp.production;
 				
 				for(var ing : recipe.getIngredients()) {
 					
 					var irp = user.production.get(ing.getResource());
 					
-					max = Math.max(max, irp.count / ing.getCount());
+					max = Math.min(max, irp.count / ing.getCount());
 					
 				}
 				
-				max = Math.min(max, rp.production);
-				
-				if(max == 0) {
+				if(max < 0) {
 					continue;
 				}
 				

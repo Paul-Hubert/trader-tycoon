@@ -67,7 +67,7 @@
 								<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production</button>
 						  	</div>
 						</div>
-					</li>				
+					</li>
 					
 					<%
 					}
