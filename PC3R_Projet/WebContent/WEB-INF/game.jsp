@@ -78,17 +78,20 @@
 			
 			<div class="col">
 				<form>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="acheter">
-				  			<label class="form-check-label" for="inlineRadio1">Acheter</label>
+				
+					<div class="form-check form-check-inline mb-2">
+						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="buy" value="acheter" required>
+				  			<label class="form-check-label">Acheter</label>
 					</div>
-					<div class="form-check form-check-inline">
-				  		<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="vendre">
-				  		<label class="form-check-label" for="inlineRadio2">Vendre</label>
+					
+					<div class="form-check form-check-inline mb-2">
+				  		<input class="form-check-input" type="radio" name="inlineRadioOptions" id="sell" value="vendre" required>
+				  		<label class="form-check-label">Vendre</label>
 					</div>
+					
 					<div class="form-group">
-						<select class="custom-select" required>
-					      	<option value="">select ressource</option>
+						<select class="custom-select mb-2" required>
+					      	<option value="">Select Ressource</option>
 					      	
 					      	<%
 							for (Resource res : Resource.values()) {
@@ -103,34 +106,32 @@
 							
 					    </select>
 			     	</div>	
+			     	
+			     	<div class="form-check">
+					  <input class="form-check-input" type="checkbox" value="auto-price" id="auto-price">
+					  <label class="form-check-label">Auto-price</label>
+					</div>
+			     	
+			     	<div class="form-group form-check-inline">
+				    	<input type="number" class="area mb-2" id="formGroupExampleInput" placeholder="Price" required>
+				    	<label class="form-check-label">$</label>
+				  	</div>
+				  	
+				  	<div class="form-check">
+					  <input class="form-check-input" type="checkbox" value="auto-quantity" id="auto-quantity">
+					  <label class="form-check-label">Auto-quantity</label>
+					</div>
+				  	
+				  	<div class="form-group">
+				    	<input type="number" class="area mb-2" id="formGroupExampleInput" placeholder="Quantity" required>
+				    </div>
+				  	
+				  	<div class="form-group">
+				  		<button type="submit" class="btn btn-secondary mb-2">Valider</button>
+				  	</div>
 				</form>
 			</div>
 		</div>
-
-
-
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
-		<h5>blablabla</h5>
 		
 
 	</div>
