@@ -13,6 +13,10 @@
 	border-color:gray;
 }
 
+.area{
+	width:150px
+}
+
 nav{
 	height: 6%;
 }
