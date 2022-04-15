@@ -34,7 +34,7 @@ public class GameServlet extends HttpServlet {
 			e.printStackTrace();
 			
 			request.setAttribute("error", e.getMessage());
-			
+			return;
 		}
 		
 		request.getRequestDispatcher("/WEB-INF/game.jsp").forward(request, response);

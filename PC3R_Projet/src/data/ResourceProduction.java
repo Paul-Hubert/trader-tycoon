@@ -39,7 +39,7 @@ public class ResourceProduction {
 		PreparedStatement ps;
 		if (empty) {
 			ps = con.prepareStatement("insert into production (user_id, resource, count, production, research) values (?,?,?,?,?);");
-			ps.setInt(1, user.id);
+			ps.setLong(1, user.id);
 			ps.setInt(2, resource.getID());
 			ps.setLong(3, count);
 			ps.setLong(4, production);
@@ -48,7 +48,7 @@ public class ResourceProduction {
 		else {
 			ps = con.prepareStatement("update production set production=? where user_id=? and resource=?;");
 			ps.setLong(1, production);
-			ps.setInt(2, user.id);
+			ps.setLong(2, user.id);
 			ps.setInt(3, resource.getID());
 		}
 

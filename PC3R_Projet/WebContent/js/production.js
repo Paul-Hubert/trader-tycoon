@@ -9,8 +9,15 @@ function addProduction(resource) {
 }
 
 function reload(data) {
-    
-    $("#money").html(data["money"]);
+    console.log(data);
+
+    $("#money").html(data.money);
+
+    for(let i in data.resources) {
+    	let res = data.resources[i];
+        $("#" + res.name + " .count").html(res.count);
+        $("#" + res.name + " .production").html(res.production);
+    }
 
 }
 

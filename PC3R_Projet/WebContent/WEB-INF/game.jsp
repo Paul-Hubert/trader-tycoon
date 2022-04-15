@@ -41,8 +41,8 @@
 
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-secondary">
 			<span class="left navbar-brand">Game</span>
-			<span id="username" class="navbar-text"> <%=user.name%> </span>
-			<span class="left navbar-text"><span id="money"> <%=user.money/100.0%> </span>$</span>
+			<span id="username" class="navbar-text"><%= user.name %></span>
+			<span class="left navbar-text"><span id="money"><%=user.money/100.0%></span>$</span>
 			<form class="right" method="post" action="/">
 				<button type="submit" name="action" value="logout"
 					class="right btn btn-secondary">Log out</button>
@@ -57,32 +57,30 @@
 		</form>
 
 
-		<div class="scroll group-list bg-dark">
+		<ul class="scroll group-list bg-dark">
 
 			<%
 			for (Resource res : Resource.values()) {
 				ResourceProduction rp = user.production.get(res);
 			%>
-
-			<div id=<%=res%> class="<%=res%> card" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="resource card-title"><%=res%></h5>
-					<h6 class="card-subtitle1 mb-2 text-muted">
-						Stock : <span class="count"><%=rp.count%></span>
-					</h6>
-					<h6 class="card-subtitle2 mb-2 text-muted">
-						Production : <span class="production"><%=rp.production%></span>
-					</h6>
-					<button onclick="addProduction(<%=res.getID()%>)" type="button"
-						class="btn btn-dark">Add production</button>
+			
+			<li id="<%=res%>" class="<%=res%> list-group-item list-group-item-dark bg-dark">
+				<div class="card text-white dark mb-3" style="width: 18rem;">
+				  <div class="card-body">
+				    <h5 class="resource card-title"><%=res %></h5>
+				    <h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
+				    <h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
+					<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production</button>
+				  </div>
 				</div>
-			</div>
+			</li>
+		
 
 			<%
 			}
 			%>
 
-		</div>
+		</ul>
 
 
 

@@ -18,29 +18,40 @@ public class User {
 	
 	private static final long startingMoney = 100000;
 	
-	public final int id;
+	public final long id;
 	public final String name;
 	public long money;
 	public final Production production;
 	
-	private User(int id) throws Exception {
+	public User(long id, String name, long money, Production production) {
+		this.id = id;
+		this.name = name;
+		this.money = money;
+		this.production = production;
+	}
+	
+	public static User create(ResultSet rs) throws Exception {
+		var id = rs.getLong("id");
+		return new User(id, rs.getString("user"), rs.getLong("money"), Production.create(id));
+		
+	}
+	
+	private static User create(long id) throws Exception {
 		
 		Connection con = ConnectionProvider.getCon();
 		
 		PreparedStatement ps=con.prepareStatement("select * from users where id=?;");
-		ps.setInt(1, id);
+		ps.setLong(1, id);
 		
 		ResultSet rs=ps.executeQuery();
 		
 		if(!rs.next()) throw new SQLException("No user with this id");
 		
-		this.id = id;
-		this.name = rs.getString("user");
-		this.money = rs.getLong("money");
-		this.production = new Production(id);
+		return create(rs);
+		
 	}
 	
-	private static void connect(HttpSession session, int id) {
+	private static void connect(HttpSession session, long id) {
 		
 		session.setAttribute("id", id);
 		
@@ -57,15 +68,15 @@ public class User {
 		
 	}
 	
-	public static int getConnectedID(HttpSession session) throws Exception {
+	public static long getConnectedID(HttpSession session) throws Exception {
 		if(!isConnected(session)) {
 			throw new Exception("Not connected, cannot retrieve ID");
 		}
-		return (int) session.getAttribute("id");
+		return (long) session.getAttribute("id");
 	}
 	
 	public static User getConnected(HttpSession session) throws Exception {
-		return new User(getConnectedID(session));
+		return User.create(getConnectedID(session));
 	}
 	
 	public static void login(HttpServletRequest request) throws Exception {
@@ -87,7 +98,7 @@ public class User {
 		
 		if(!rs.next()) throw new SQLException("No user with this username/password");
 		
-		int id = rs.getInt("id");
+		long id = rs.getLong("id");
 		
 		connect(request.getSession(), id);
 		
@@ -137,7 +148,7 @@ public class User {
 		disconnect(request.getSession());
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	public String getUsername() {
@@ -155,7 +166,7 @@ public class User {
 		// not finished
 		var ps = con.prepareStatement("update users set money=? where id=?;");
 		ps.setLong(1, money);
-		ps.setInt(2, id);
+		ps.setLong(2, id);
 		
 		int rows = ps.executeUpdate();
 		if(rows == 0) throw new SQLException("No updates");
