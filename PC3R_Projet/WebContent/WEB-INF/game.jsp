@@ -49,40 +49,89 @@
 			</form>
 		</nav>
 
-
-
-		<form method="post" action="/">
-			<button type="submit" name="action" value="logout"
-				class="btn btn-secondary">Log out</button>
-		</form>
-
-
-		<ul class="scroll group-list bg-dark">
-
-			<%
-			for (Resource res : Resource.values()) {
-				ResourceProduction rp = user.production.get(res);
-			%>
-			
-			<li id="<%=res%>" class="<%=res%> list-group-item list-group-item-dark bg-dark">
-				<div class="card text-white dark mb-3" style="width: 18rem;">
-				  <div class="card-body">
-				    <h5 class="resource card-title"><%=res %></h5>
-				    <h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
-				    <h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
-					<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production</button>
-				  </div>
-				</div>
-			</li>
+		<div class="row m-top">
+			<div class="col">
+				<ul class="scroll group-list bg-dark">
 		
+					<%
+					for (Resource res : Resource.values()) {
+						ResourceProduction rp = user.production.get(res);
+					%>
+					
+					<li id="<%=res%>" class="<%=res%> list-group-item list-group-item-dark bg-dark">
+						<div class="card text-white dark mb-3" style="width: 18rem;">
+							<div class="card-body">
+						  		<h5 class="resource card-title"><%=res %></h5>
+						    	<h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
+						    	<h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
+								<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production</button>
+						  	</div>
+						</div>
+					</li>				
+					
+					<%
+					}
+					%>
+		
+				</ul>
+			</div>
+			
+			<div class="col">
+				<form>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="acheter">
+				  			<label class="form-check-label" for="inlineRadio1">Acheter</label>
+					</div>
+					<div class="form-check form-check-inline">
+				  		<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="vendre">
+				  		<label class="form-check-label" for="inlineRadio2">Vendre</label>
+					</div>
+					<div class="form-group">
+						<select class="custom-select" required>
+					      	<option value="">select ressource</option>
+					      	
+					      	<%
+							for (Resource res : Resource.values()) {
+								ResourceProduction rp = user.production.get(res);
+							%>
+							
+							<option value="<%=res %>"><%=res %></option>
+							
+							<%
+							}
+							%>
+							
+					    </select>
+			     	</div>	
+				</form>
+			</div>
+		</div>
 
-			<%
-			}
-			%>
-
-		</ul>
 
 
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		
 
 	</div>
 </body>
