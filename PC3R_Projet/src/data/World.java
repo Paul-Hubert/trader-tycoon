@@ -31,6 +31,56 @@ public class World {
 		
 		return world;
 	}
+	
+	public void step(long user_id) throws Exception {
+		
+		User user = User.create(user_id);
+		
+		for(Resource resource : Resource.values()) {
+			
+			var rp = user.production.get(resource);
+			
+			var recipe = Crafting.recipes.get(resource);
+			
+			if(recipe == null) {
+				
+				rp.count += rp.production;
+				
+			} else {
+				
+				long max = 0;
+				
+				for(var ing : recipe.getIngredients()) {
+					
+					var irp = user.production.get(ing.getResource());
+					
+					max = Math.max(max, irp.count / ing.getCount());
+					
+				}
+				
+				max = Math.min(max, rp.production);
+				
+				if(max == 0) {
+					continue;
+				}
+				
+				rp.count += max;
+				
+				for(var ing : recipe.getIngredients()) {
+					
+					var irp = user.production.get(ing.getResource());
+					
+					irp.count -= max * ing.getCount();
+					
+				}
+				
+			}
+			
+		}
+		
+		user.production.update(user);
+		
+	}
 
 	public void step(ScheduledExecutorService scheduler) throws Exception {
 		
@@ -48,51 +98,7 @@ public class World {
 
 				try {
 					
-					User user = User.create(user_id);
-					
-					for(Resource resource : Resource.values()) {
-						
-						var rp = user.production.get(resource);
-						
-						var recipe = Crafting.recipes.get(resource);
-						
-						if(recipe == null) {
-							
-							rp.count += rp.production;
-							
-						} else {
-							
-							long max = 0;
-							
-							for(var ing : recipe.getIngredients()) {
-								
-								var irp = user.production.get(ing.getResource());
-								
-								max = Math.max(max, irp.count / ing.getCount());
-								
-							}
-							
-							max = Math.min(max, rp.production);
-							
-							if(max == 0) {
-								continue;
-							}
-							
-							rp.count += max;
-							
-							for(var ing : recipe.getIngredients()) {
-								
-								var irp = user.production.get(ing.getResource());
-								
-								irp.count -= max * ing.getCount();
-								
-							}
-							
-						}
-						
-					}
-					
-					user.production.update(user);
+					step(user_id);
 				
 				} catch (Exception e) {
 					e.printStackTrace();

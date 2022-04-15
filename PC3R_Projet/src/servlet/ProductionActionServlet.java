@@ -38,7 +38,7 @@ public class ProductionActionServlet extends HttpServlet {
 				ResourceProduction rp = user.production.get(r);
 				
 				try {
-					user.pay(rp.getCost());
+					user.pay(rp.getProductionCost());
 					rp.addProduction(user);
 				} catch(NotEnoughMoneyException e) {}
 				
