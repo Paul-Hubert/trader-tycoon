@@ -15,9 +15,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
-<script src="/js/production.js"></script>
-<script src="/js/game.js"></script>
 <script src="/js/common.js"></script>
+<script src="/js/game.js"></script>
+<script src="/js/production.js"></script>
 <meta charset="utf-8">
 </head>
 <body class="bg-dark text-white">
@@ -42,7 +42,7 @@
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-secondary">
 			<span class="left navbar-brand">Game</span>
 			<span id="username" class="navbar-text"><%= user.name %></span>
-			<span class="left navbar-text"><span id="money"><%=user.money/100.0%></span>$</span>
+			<span class="left navbar-text"><span id="money"><%=Money.format(user.money) %></span></span>
 			<form class="right" method="post" action="/">
 				<button type="submit" name="action" value="logout"
 					class="right btn btn-secondary">Log out</button>
@@ -62,14 +62,15 @@
 						<div class="card text-white dark mb-3" style="width: 18rem;">
 							<div class="card-body">
 						  		<h5 class="resource card-title"><%=res %></h5>
-						  		<h6 class="card-subtitle1 mb-2 text-muted">Production price : <span class="count"><%=rp.getProductionCost() %></span></h6>
 						    	<h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
 						    	<h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
 								<div class="form-group">
-				    				<input type="number" class="area mb-2" id="invest" placeholder="invest">
+									<label class="form-check-label">Research investment : </label>
+				    				<input type="number" class="research-cost area mb-2" value="<%=rp.research_cost %>">
 				    				<label class="form-check-label">$</label>
 				    			</div>
-								<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production</button>
+						    	<h6 class="card-subtitle1 mb-2 text-muted">Production efficiency : <span class="research"><%=rp.research %></span></h6>
+								<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production for <span class="production-cost"><%=Money.format(rp.getProductionCost()) %></span></button>
 						  	</div>
 						</div>
 					</li>

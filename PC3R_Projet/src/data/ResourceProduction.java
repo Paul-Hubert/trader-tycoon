@@ -66,8 +66,4 @@ public class ResourceProduction {
 		return 10000;
 	}
 	
-	public int getPrice() {
-		return 1000;
-	}
-	
 }

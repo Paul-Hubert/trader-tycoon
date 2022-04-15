@@ -10,12 +10,15 @@ function addProduction(resource) {
 
 function reload(data) {
     
-    $("#money").html(data.money/100.0);
+    $("#money").html(money(data.money));
 
     for(let i in data.resources) {
     	let res = data.resources[i];
         $("#" + res.name + " .count").html(res.count);
         $("#" + res.name + " .production").html(res.production);
+        $("#" + res.name + " .production-cost").html(money(res.production_cost));
+        $("#" + res.name + " .research").html(res.research);
+        $("#" + res.name + " .research-cost").attr('value', res.research_cost);
     }
 
 }
