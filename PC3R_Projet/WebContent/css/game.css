@@ -1,13 +1,20 @@
+.m-top {
+	margin-top:6%;
+}
+
 .scroll{
 	position: relative;
 	overflow-y: scroll;
-	max-height: fit-content;
+	height: 800px;
 	max-width: fit-content;
-	margin-top:5%;
+}
+
+.card{
+	border-color:gray;
 }
 
 nav{
-	height: 5%;
+	height: 6%;
 }
 
 .left{
@@ -44,7 +51,8 @@ nav{
   border: 3px solid light-gray; 
   }
 
-	::-webkit-scrollbar {
+body::-webkit-scrollbar {
+  margin-top: 3%;
   width: 16px;
 }
 
