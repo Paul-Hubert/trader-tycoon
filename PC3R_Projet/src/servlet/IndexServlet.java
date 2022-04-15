@@ -25,7 +25,7 @@ public class IndexServlet extends HttpServlet {
 			return;
 		}
 		
-		request.getRequestDispatcher("/WEB-INF/index.jsp").include(request, response);
+		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 		
 	}
 	

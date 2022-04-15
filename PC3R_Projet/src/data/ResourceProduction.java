@@ -34,7 +34,7 @@ public class ResourceProduction {
 		PreparedStatement ps;
 		production++;
 		if (empty) {
-			ps = con.prepareStatement("insert into production * values (?,?,?,?,?);");
+			ps = con.prepareStatement("insert into production (user_id, resource, count, production, research) values (?,?,?,?,?);");
 			ps.setInt(1, user.id);
 			ps.setInt(2, resource.getID());
 			ps.setLong(3, count);

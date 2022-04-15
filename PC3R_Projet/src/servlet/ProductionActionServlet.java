@@ -36,7 +36,9 @@ public class ProductionActionServlet extends HttpServlet {
 				ResourceProduction rp = user.production.get(r);
 				rp.addProduction(user);
 			}
+			
 			request.getRequestDispatcher("/update").forward(request, response);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

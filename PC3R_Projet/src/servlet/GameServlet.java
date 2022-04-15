@@ -37,7 +37,7 @@ public class GameServlet extends HttpServlet {
 			
 		}
 		
-		request.getRequestDispatcher("/WEB-INF/game.jsp").include(request, response);
+		request.getRequestDispatcher("/WEB-INF/game.jsp").forward(request, response);
 		
 	}
 

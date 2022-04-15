@@ -29,7 +29,7 @@
 			%>
 			
 			<%
-			User user = (User) request.getAttribute("user");	
+			User user = (User) request.getAttribute("user");
 			%>
 			
 			<h2>Game</h2>
@@ -50,10 +50,9 @@
 			<div id=<%=res %> class="card" style="width: 18rem;">
 			  <div class="card-body">
 			    <h5 class="card-title"><%=res %></h5>
-			    <h6 class="card-subtitle1 mb-2 text-muted">count : <%=rp.count %></h6>
-			    <h6 class="card-subtitle2 mb-2 text-muted">production : <%=rp.production %></h6>
-				<button id="b1" type="button" class="btn btn-dark">bouton 1</button>
-				<button id="b2" type="button" class="btn btn-dark">bouton 2</button>
+			    <h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
+			    <h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
+				<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-dark">Add production</button>
 			  </div>
 			</div>
 				

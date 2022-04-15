@@ -20,11 +20,14 @@ public class UpdateServlet extends HttpServlet {
 			return;
 		}
 		
+		response.setContentType("application/json");
+		response.setHeader("Content-Disposition", "inline");
+		
 		try {
 		
 			User user = User.getConnected(request.getSession());
 			request.setAttribute("user", user);
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			
@@ -32,7 +35,7 @@ public class UpdateServlet extends HttpServlet {
 			
 		}
 		
-		request.getRequestDispatcher("/WEB-INF/game.jsp").include(request, response);
+		request.getRequestDispatcher("/WEB-INF/update.jsp").include(request, response);
 		
 	}
 	
