@@ -19,6 +19,7 @@ CREATE TABLE production (
 	resource INT NOT NULL,
 	count BIGINT NOT NULL,
 	production BIGINT NOT NULL,
+	research_cost BIGINT NOT NULL,
 	research BIGINT NOT NULL,
 	FOREIGN KEY (user_id)
         REFERENCES users(id)

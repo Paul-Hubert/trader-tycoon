@@ -2,7 +2,16 @@ package data;
 
 public enum Resource {
 	wheat,
-	bread;
+	bread,
+	iron,
+	steel,
+	copper,
+	gold,
+	petrol,
+	plastic,
+	circuit,
+	car,
+	phone;
 	
 	public int getID() {
 		return ordinal();
