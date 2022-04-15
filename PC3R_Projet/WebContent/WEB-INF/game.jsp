@@ -74,6 +74,26 @@
 				  </div>
 				</div>
 			</li>
+			<li id="<%=res%>" class="<%=res%> list-group-item list-group-item-dark bg-dark">
+				<div class="card text-white dark mb-3" style="width: 18rem;">
+				  <div class="card-body">
+				    <h5 class="resource card-title"><%=res %></h5>
+				    <h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
+				    <h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
+					<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production</button>
+				  </div>
+				</div>
+			</li>
+			<li id="<%=res%>" class="<%=res%> list-group-item list-group-item-dark bg-dark">
+				<div class="card text-white dark mb-3" style="width: 18rem;">
+				  <div class="card-body">
+				    <h5 class="resource card-title"><%=res %></h5>
+				    <h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
+				    <h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
+					<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production</button>
+				  </div>
+				</div>
+			</li>
 		
 
 			<%
@@ -83,6 +103,30 @@
 		</ul>
 
 
+
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		<h5>blablabla</h5>
+		
 
 	</div>
 </body>

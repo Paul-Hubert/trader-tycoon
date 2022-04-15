@@ -1,8 +1,13 @@
 .scroll{
 	position: relative;
 	overflow-y: scroll;
-	height: 300px;
+	max-height: fit-content;
 	max-width: fit-content;
+	margin-top:5%;
+}
+
+nav{
+	height: 5%;
 }
 
 .left{
