@@ -62,8 +62,13 @@
 						<div class="card text-white dark mb-3" style="width: 18rem;">
 							<div class="card-body">
 						  		<h5 class="resource card-title"><%=res %></h5>
+						  		<h6 class="card-subtitle1 mb-2 text-muted">Production price : <span class="count"><%=rp.getProductionCost() %></span></h6>
 						    	<h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
 						    	<h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
+								<div class="form-group">
+				    				<input type="number" class="area mb-2" id="invest" placeholder="invest">
+				    				<label class="form-check-label">$</label>
+				    			</div>
 								<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production</button>
 						  	</div>
 						</div>
@@ -113,7 +118,7 @@
 					</div>
 			     	
 			     	<div class="form-group form-check-inline">
-				    	<input type="number" class="area mb-2" id="formGroupExampleInput" placeholder="Price" required>
+				    	<input type="number" class="area mb-2" id="price" placeholder="Price" required>
 				    	<label class="form-check-label">$</label>
 				  	</div>
 				  	
@@ -123,7 +128,7 @@
 					</div>
 				  	
 				  	<div class="form-group">
-				    	<input type="number" class="area mb-2" id="formGroupExampleInput" placeholder="Quantity" required>
+				    	<input type="number" class="area mb-2" id="quantity" placeholder="Quantity" required>
 				    </div>
 				  	
 				  	<div class="form-group">
