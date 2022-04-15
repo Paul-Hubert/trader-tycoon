@@ -34,57 +34,45 @@ public class World {
 
 	public void step(ScheduledExecutorService scheduler) throws Exception {
 		
-		for(Resource res : Resource.values()) {
-			
-			Connection con = ConnectionProvider.getCon();
-			
-			var recipe = Crafting.recipes.get(res);
-			
-			if(recipe == null) {
-				
+		Connection con = ConnectionProvider.getCon();
+		
+		PreparedStatement userps = con.prepareStatement("select id from users;");
+		
+		ResultSet users = userps.executeQuery();
 
-				scheduler.schedule(() -> {
+		while(users.next()) {
+			
+			var user_id = users.getLong("id");
+			
+			scheduler.schedule(() -> {
+
+				try {
 					
-					try {
-						PreparedStatement ps = con.prepareStatement("update production set count=(count+production) where resource=?;");
-						ps.setLong(1, res.getID());
+				
+					PreparedStatement prodps = con.prepareStatement("select * from production where user_id=? order by resource asc;");
+					prodps.setLong(1, user_id);
+					
+					ResultSet prods = prodps.executeQuery();
+					
+					while(prods.next()) {
 						
-						ps.executeUpdate();
-					} catch (SQLException e) {
-						e.printStackTrace();
+						var res = Resource.get(prods.getInt("resource"));
+						
+						var recipe = Crafting.recipes.get(res);
+						
+						if(recipe == null) {
+							
+							
+							
+						}
+						
 					}
-					
-				}, 0, TimeUnit.SECONDS);
 				
-				
-			} else {
-				/*
-				query = "UPDATE production p ";
-				
-				for(var ing : recipe.getIngredients()) {
-					var id = ing.getResource().getID();
-					query += "JOIN production i" + id;
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 
-				boolean first = true;
-				for(var ing : recipe.getIngredients()) {
-					var id = ing.getResource().getID();
-					query += (first ? " ON " : " AND ") + "p.user_id=i"+id+".user_id AND i"+id+".resource="+id+" AND i"+id+".count>"+ing.getCount();
-					first = false;
-				}
-				query += "(SELECT MIN(count/))";
-				query += " SET p.count=p.count+p.production";
-
-				for(var ing : recipe.getIngredients()) {
-					var id = ing.getResource().getID();
-					query += ", i"+id+".count=GREATEST(0, i"+id+".count-p.production*"+ing.getCount()+")";
-				}
-				query += ";";
-				
-				//System.out.println(query);
-				//String query = "UPDATE production p JOIN production i ON p.user_id=i.user_id AND p.resource=1 AND i.resource=0 AND i.count>p.production SET p.count=p.count+p.production, i.count=i.count-p.production;";
-				*/
-			}
+			}, 0, TimeUnit.SECONDS);
 			
 		}
 	
