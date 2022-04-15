@@ -39,7 +39,7 @@ public class World {
 		PreparedStatement userps = con.prepareStatement("select id from users;");
 		
 		ResultSet users = userps.executeQuery();
-
+		
 		while(users.next()) {
 			
 			var user_id = users.getLong("id");
@@ -48,25 +48,51 @@ public class World {
 
 				try {
 					
-				
-					PreparedStatement prodps = con.prepareStatement("select * from production where user_id=? order by resource asc;");
-					prodps.setLong(1, user_id);
+					User user = User.create(user_id);
 					
-					ResultSet prods = prodps.executeQuery();
-					
-					while(prods.next()) {
+					for(Resource resource : Resource.values()) {
 						
-						var res = Resource.get(prods.getInt("resource"));
+						var rp = user.production.get(resource);
 						
-						var recipe = Crafting.recipes.get(res);
+						var recipe = Crafting.recipes.get(resource);
 						
 						if(recipe == null) {
 							
+							rp.count += rp.production;
 							
+						} else {
+							
+							long max = 0;
+							
+							for(var ing : recipe.getIngredients()) {
+								
+								var irp = user.production.get(ing.getResource());
+								
+								max = Math.max(max, irp.count / ing.getCount());
+								
+							}
+							
+							max = Math.min(max, rp.production);
+							
+							if(max == 0) {
+								continue;
+							}
+							
+							rp.count += max;
+							
+							for(var ing : recipe.getIngredients()) {
+								
+								var irp = user.production.get(ing.getResource());
+								
+								irp.count -= max * ing.getCount();
+								
+							}
 							
 						}
 						
 					}
+					
+					user.production.update(user);
 				
 				} catch (Exception e) {
 					e.printStackTrace();

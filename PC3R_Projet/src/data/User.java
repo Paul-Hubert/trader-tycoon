@@ -36,7 +36,7 @@ public class User {
 		
 	}
 	
-	private static User create(long id) throws Exception {
+	public static User create(long id) throws Exception {
 		
 		Connection con = ConnectionProvider.getCon();
 		

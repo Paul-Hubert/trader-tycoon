@@ -9,9 +9,8 @@ function addProduction(resource) {
 }
 
 function reload(data) {
-    console.log(data);
-
-    $("#money").html(data.money);
+    
+    $("#money").html(data.money/100.0);
 
     for(let i in data.resources) {
     	let res = data.resources[i];
