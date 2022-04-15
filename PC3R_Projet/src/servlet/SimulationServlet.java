@@ -8,7 +8,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import data.World;
+import simulation.World;
 
 @WebListener
 public class SimulationServlet implements ServletContextListener {

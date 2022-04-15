@@ -169,7 +169,15 @@ public class User {
 		ps.setLong(2, id);
 		
 		int rows = ps.executeUpdate();
+		
 		if(rows == 0) throw new SQLException("No updates");
+		
+	}
+	
+	public void updateRec() throws Exception {
+		
+		update();
+		production.update(this);
 		
 	}
 

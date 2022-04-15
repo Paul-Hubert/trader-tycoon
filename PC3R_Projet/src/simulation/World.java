@@ -1,13 +1,15 @@
-package data;
+package simulation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import data.Crafting;
+import data.Resource;
+import data.User;
 import database.ConnectionProvider;
 
 public class World {
@@ -74,11 +76,17 @@ public class World {
 					
 				}
 				
+				if(Market.canAutoSell(resource)) {
+					var num = rp.count;
+					rp.count = 0;
+					user.money += num * Market.autoSellPrice(resource);
+				}
+				
 			}
 			
 		}
 		
-		user.production.update(user);
+		user.updateRec();
 		
 	}
 
