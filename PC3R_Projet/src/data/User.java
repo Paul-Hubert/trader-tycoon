@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import database.ConnectionProvider;
 import database.PasswordHash;
+import exception.NotEnoughMoneyException;
 
 public class User {
 	
@@ -19,7 +20,7 @@ public class User {
 	
 	public final int id;
 	public final String name;
-	public final long money;
+	public long money;
 	public final Production production;
 	
 	private User(int id) throws Exception {
@@ -142,5 +143,32 @@ public class User {
 	public String getUsername() {
 		return name;
 	}
+	
+	public long getMoney() {
+		return money;
+	}
+	
+	public void update() throws Exception {
+		
+		Connection con = ConnectionProvider.getCon();
+		
+		// not finished
+		var ps = con.prepareStatement("update users set money=? where id=?;");
+		ps.setLong(1, money);
+		ps.setInt(2, id);
+		
+		int rows = ps.executeUpdate();
+		if(rows == 0) throw new SQLException("No updates");
+		
+	}
+
+	public void pay(long price) throws Exception {
+		if(price > money) {
+			throw new NotEnoughMoneyException("Not enough money ; current: " + money + ", price" + price);
+		}
+		this.money = money - price;
+		update();
+	}
+	
 	
 }

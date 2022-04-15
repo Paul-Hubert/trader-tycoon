@@ -30,9 +30,13 @@ public class ResourceProduction {
 	}
 	
 	public void addProduction(User user) throws Exception {
+		production++;
+		update(user);
+	}
+	
+	public void update(User user) throws Exception {
 		Connection con = ConnectionProvider.getCon();
 		PreparedStatement ps;
-		production++;
 		if (empty) {
 			ps = con.prepareStatement("insert into production (user_id, resource, count, production, research) values (?,?,?,?,?);");
 			ps.setInt(1, user.id);
@@ -50,4 +54,9 @@ public class ResourceProduction {
 
 		ps.executeUpdate();
 	}
+	
+	public int getCost() {
+		return 100;
+	}
+	
 }

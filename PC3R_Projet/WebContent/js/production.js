@@ -8,10 +8,9 @@ function addProduction(resource) {
     $.post("/production", {action:"addProduction", resource}, reload, "json").fail(error);
 }
 
-function reload(e) {
+function reload(data) {
     
-    
-
+    $("#money").html(data["money"]);
 
 }
 

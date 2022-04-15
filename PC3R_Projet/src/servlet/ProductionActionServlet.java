@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import data.Resource;
 import data.ResourceProduction;
 import data.User;
+import exception.NotEnoughMoneyException;
 
 @WebServlet("/production")
 public class ProductionActionServlet extends HttpServlet {
@@ -33,8 +34,14 @@ public class ProductionActionServlet extends HttpServlet {
 			Resource r = Resource.get(Integer.parseInt(resource));
 
 			if (action.equals("addProduction")) {
+				
 				ResourceProduction rp = user.production.get(r);
-				rp.addProduction(user);
+				
+				try {
+					user.pay(rp.getCost());
+					rp.addProduction(user);
+				} catch(NotEnoughMoneyException e) {}
+				
 			}
 			
 			request.getRequestDispatcher("/update").forward(request, response);
