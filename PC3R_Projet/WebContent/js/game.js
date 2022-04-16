@@ -21,6 +21,8 @@ function reload(data) {
         $("#" + res.name + " .research-cost").attr('value', res.research_cost);
     }
 
+	updateCurrencySpy();
+
 }
 
 function refresh() {
@@ -28,6 +30,7 @@ function refresh() {
 }
 
 window.addEventListener("load", (e) => {
+	updateCurrencySpy();
     $.ajaxSetup({ cache: false });
     setInterval(refresh, refresh_rate);
 });
