@@ -22,17 +22,19 @@ public class User {
 	public final String name;
 	public long money;
 	public final Production production;
+	public final Offers offers;
 	
-	public User(long id, String name, long money, Production production) {
+	public User(long id, String name, long money, Production production, Offers offers) {
 		this.id = id;
 		this.name = name;
 		this.money = money;
 		this.production = production;
+		this.offers = offers;
 	}
 	
 	public static User create(ResultSet rs) throws Exception {
 		var id = rs.getLong("id");
-		return new User(id, rs.getString("user"), rs.getLong("money"), Production.create(id));
+		return new User(id, rs.getString("user"), rs.getLong("money"), Production.create(id), Offers.create(id));
 		
 	}
 	
@@ -177,7 +179,8 @@ public class User {
 	public void updateRec() throws Exception {
 		
 		update();
-		production.update(this);
+		production.update();
+		offers.update();
 		
 	}
 

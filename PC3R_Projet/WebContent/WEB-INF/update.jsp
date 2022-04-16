@@ -10,13 +10,13 @@
 	%>
 	"user": "<%= user.name %>",
 	"money": <%= user.money %>,
-	"resources": [
+	"resources": {
 		<%
 		boolean first = true;
 		for(Resource res : Resource.values()) {
 			ResourceProduction rp = user.production.get(res);
 		%><%= first ? "" : "," %>
-			{
+		"<%= res %>": {
 				"id": <%=res.getID() %>,
 				"name": "<%=res %>",
 				"count": <%=rp.count %>,
@@ -29,6 +29,9 @@
 		first = false;
 		}
 		%>
+	},
+	"offers": [
+		
 	]
 
 }

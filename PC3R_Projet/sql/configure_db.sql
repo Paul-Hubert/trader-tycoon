@@ -25,3 +25,14 @@ CREATE TABLE production (
         REFERENCES users(id)
         ON DELETE CASCADE
 );
+
+CREATE TABLE offers (
+	user_id BIGINT NOT NULL,
+	resource INT NOT NULL,
+	buy BOOL NOT NULL,
+	price BIGINT NOT NULL,
+	quantity BIGINT NOT NULL,
+	FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);

@@ -97,7 +97,7 @@
 					
 					<div class="form-group">
 						<select class="custom-select mb-2" required>
-					      	<option value="">Select Ressource</option>
+					      	<option value="">Select Resource</option>
 					      	
 					      	<%
 							for (Resource res : Resource.values()) {
@@ -111,22 +111,12 @@
 							%>
 							
 					    </select>
-			     	</div>	
-			     	
-			     	<div class="form-check">
-					  <input class="form-check-input" type="checkbox" value="auto-price" id="auto-price">
-					  <label class="form-check-label">Auto-price</label>
-					</div>
+			     	</div>
 			     	
 			     	<div class="form-group form-check-inline">
 				    	<input type="number" class="area mb-2" id="price" placeholder="Price" required>
 				    	<label class="form-check-label">$</label>
 				  	</div>
-				  	
-				  	<div class="form-check">
-					  <input class="form-check-input" type="checkbox" value="auto-quantity" id="auto-quantity">
-					  <label class="form-check-label">Auto-quantity</label>
-					</div>
 				  	
 				  	<div class="form-group">
 				    	<input type="number" class="area mb-2" id="quantity" placeholder="Quantity" required>

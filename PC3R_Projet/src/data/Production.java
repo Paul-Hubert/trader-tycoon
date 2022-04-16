@@ -9,12 +9,16 @@ import java.util.Map;
 import database.ConnectionProvider;
 
 public class Production {
+	public final long user_id;
 	
 	private final Map<Resource, ResourceProduction> resources = new HashMap<>();
 	
+	public Production(long id) throws Exception {
+		this.user_id = id;
+	}
+	
 	public static Production create(long id) throws Exception {
-		
-		var prod = new Production();
+		var prod = new Production(id);
 		
 		Connection con = ConnectionProvider.getCon();
 		
@@ -35,17 +39,17 @@ public class Production {
 	public ResourceProduction get(Resource resource) {
 		var rp = resources.get(resource);
 		if(rp == null) {
-			return new ResourceProduction(resource);
+			return new ResourceProduction(user_id, resource);
 		}
 		return rp;
 	}
 
-	public void update(User user) throws Exception {
+	public void update() throws Exception {
 		
 		for(var res : resources.keySet()) {
 			var rp = resources.get(res);
 			
-			rp.update(user);
+			rp.update();
 		}
 		
 	}

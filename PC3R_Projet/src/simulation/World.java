@@ -98,7 +98,7 @@ public class World {
 		
 		while(users.next()) {
 			
-			var user_id = users.getLong("id");
+			final var user_id = users.getLong("id");
 			
 			scheduler.schedule(() -> {
 
