@@ -5,7 +5,7 @@ function error(e) {
 }
 
 function addProduction(resource) {
-    $.post("/production", {action:"addProduction", resource}, reload, "json").fail(error);
+    $.post("/action", {action:"addProduction", resource}, reload, "json").fail(error);
 }
 
 function reload(data) {

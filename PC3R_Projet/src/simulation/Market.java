@@ -5,10 +5,17 @@ import data.Resource;
 public class Market {
 	
 	public static boolean canAutoSell(Resource res) {
-		return autoSellPrice(res) != 0;
+		switch(res) {
+			case bread:
+			case car:
+			case phone:
+				return true;
+			default:
+				return false;
+		}
 	}
 	
-	public static long autoSellPrice(Resource res) {
+	public static long price(Resource res) {
 		
 		switch(res) {
 			case bread:

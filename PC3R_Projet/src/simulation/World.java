@@ -74,12 +74,6 @@ public class World {
 					
 				}
 				
-				if(Market.canAutoSell(resource)) {
-					var num = rp.count;
-					rp.count = 0;
-					user.money += num * Market.autoSellPrice(resource);
-				}
-				
 			}
 			
 		}

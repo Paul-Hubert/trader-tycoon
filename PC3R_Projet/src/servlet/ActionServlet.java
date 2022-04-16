@@ -12,11 +12,11 @@ import data.ResourceProduction;
 import data.User;
 import exception.NotEnoughMoneyException;
 
-@WebServlet("/production")
-public class ProductionActionServlet extends HttpServlet {
+@WebServlet("/action")
+public class ActionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ProductionActionServlet() {
+	public ActionServlet() {
 		super();
 	}
 

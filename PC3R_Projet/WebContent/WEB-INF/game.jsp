@@ -113,12 +113,12 @@
 			     	</div>
 			     	
 			     	<div class="form-group form-check-inline">
-				    	<input type="number" class="area mb-2" placeholder="Price" name="price" required>
+				    	<input type="number" class="area mb-2" placeholder="Target Price" name="price" required>
 				    	<label class="form-check-label">$</label>
 				  	</div>
 				  	
 				  	<div class="form-group">
-				    	<input type="number" class="area mb-2" placeholder="Quantity" name="quantity" required>
+				    	<input type="number" class="area mb-2" placeholder="Target Quantity" name="quantity" required>
 				    </div>
 				  	
 				  	<div class="form-group">
