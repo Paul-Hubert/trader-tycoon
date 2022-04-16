@@ -17,7 +17,6 @@
 	crossorigin="anonymous"></script>
 <script src="/js/common.js"></script>
 <script src="/js/game.js"></script>
-<script src="/js/production.js"></script>
 <meta charset="utf-8">
 </head>
 <body class="bg-dark text-white">
