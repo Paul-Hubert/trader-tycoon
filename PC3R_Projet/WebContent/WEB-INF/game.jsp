@@ -59,14 +59,14 @@
 					%>
 					
 					<li id="<%=res%>" class="<%=res%> list-group-item list-group-item-dark bg-dark">
-						<div class="card text-white dark mb-3" style="width: 18rem;">
+						<div class="card text-white dark mb-3">
 							<div class="card-body">
 						  		<h5 class="resource card-title"><%=res %></h5>
 						    	<h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
 						    	<h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
 								<div class="form-group">
 									<label class="form-check-label">Research investment : </label>
-				    				<input type="number" class="research-cost area mb-2" value="<%=rp.research_cost %>">
+				    				<input type="number" class="research-cost area mb-2" name="invest" value="<%=rp.research_cost %>">
 				    				<label class="form-check-label">$</label>
 				    			</div>
 						    	<h6 class="card-subtitle1 mb-2 text-muted">Production efficiency : <span class="research"><%=rp.research %></span></h6>
@@ -86,17 +86,17 @@
 				<form>
 				
 					<div class="form-check form-check-inline mb-2">
-						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="buy" value="acheter" required>
+						<input class="form-check-input" type="radio" name="achat_vente" value="achat" required>
 				  			<label class="form-check-label">Acheter</label>
 					</div>
 					
 					<div class="form-check form-check-inline mb-2">
-				  		<input class="form-check-input" type="radio" name="inlineRadioOptions" id="sell" value="vendre" required>
+				  		<input class="form-check-input" type="radio" name="achat_vente" value="vente" required>
 				  		<label class="form-check-label">Vendre</label>
 					</div>
 					
 					<div class="form-group">
-						<select class="custom-select mb-2" required>
+						<select class="custom-select mb-2" name="resource" required>
 					      	<option value="">Select Resource</option>
 					      	
 					      	<%
@@ -114,12 +114,12 @@
 			     	</div>
 			     	
 			     	<div class="form-group form-check-inline">
-				    	<input type="number" class="area mb-2" id="price" placeholder="Price" required>
+				    	<input type="number" class="area mb-2" placeholder="Price" name="price" required>
 				    	<label class="form-check-label">$</label>
 				  	</div>
 				  	
 				  	<div class="form-group">
-				    	<input type="number" class="area mb-2" id="quantity" placeholder="Quantity" required>
+				    	<input type="number" class="area mb-2" placeholder="Quantity" name="quantity" required>
 				    </div>
 				  	
 				  	<div class="form-group">
