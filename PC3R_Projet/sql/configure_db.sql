@@ -29,7 +29,7 @@ CREATE TABLE production (
 CREATE TABLE offers (
 	user_id BIGINT NOT NULL,
 	resource INT NOT NULL,
-	buy BOOL NOT NULL,
+	buy BOOLEAN NOT NULL,
 	price BIGINT NOT NULL,
 	quantity BIGINT NOT NULL,
 	FOREIGN KEY (user_id)

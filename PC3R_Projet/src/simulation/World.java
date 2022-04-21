@@ -40,7 +40,7 @@ public class World {
 		
 		for(Resource resource : Resource.values()) {
 			
-			var rp = user.production.get(resource);
+			var rp = user.getProduction().get(resource);
 			
 			var recipe = Crafting.recipes.get(resource);
 			
@@ -54,7 +54,7 @@ public class World {
 				
 				for(var ing : recipe.getIngredients()) {
 					
-					var irp = user.production.get(ing.getResource());
+					var irp = user.getProduction().get(ing.getResource());
 					
 					max = Math.min(max, irp.count / ing.getCount());
 					
@@ -68,7 +68,7 @@ public class World {
 				
 				for(var ing : recipe.getIngredients()) {
 					
-					var irp = user.production.get(ing.getResource());
+					var irp = user.getProduction().get(ing.getResource());
 					
 					irp.count -= max * ing.getCount();
 					
@@ -78,7 +78,8 @@ public class World {
 			
 		}
 		
-		user.updateRec();
+		user.update();
+		user.getProduction().update();
 		
 	}
 

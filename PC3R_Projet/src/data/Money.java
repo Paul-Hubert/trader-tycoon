@@ -12,4 +12,12 @@ public class Money {
 		//return String.format("%. 2f", money / 100.0) + "$";
 	}
 	
+	public static Long parse(String money) {
+		System.out.println(money);
+		money = money.replace(",", "");
+		money = money.replace("$", "");
+		money = money.replace(".", "");
+		return Long.parseLong(money);
+	}
+	
 }

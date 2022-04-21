@@ -1,4 +1,5 @@
 <%@ page import="data.*" %>
+<%@ page import="java.util.ArrayList" %>
 {
 	<%
 	if(request.getAttribute("error") != null) {
@@ -14,7 +15,7 @@
 		<%
 		boolean first = true;
 		for(Resource res : Resource.values()) {
-			ResourceProduction rp = user.production.get(res);
+			ResourceProduction rp = user.getProduction().get(res);
 		%><%= first ? "" : "," %>
 		"<%= res %>": {
 				"id": <%=res.getID() %>,
@@ -29,9 +30,6 @@
 		first = false;
 		}
 		%>
-	},
-	"offers": [
-		
-	]
+	}
 
 }

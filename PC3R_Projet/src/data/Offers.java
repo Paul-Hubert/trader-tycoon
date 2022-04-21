@@ -12,7 +12,7 @@ import database.ConnectionProvider;
 public class Offers {
 	public final long user_id;
 	
-	private final Map<Resource, ArrayList<Offer>> offers = new HashMap<>();
+	public final Map<Resource, ArrayList<Offer>> offers = new HashMap<>();
 	
 	public Offers(long id) throws Exception {
 		this.user_id = id;
@@ -38,11 +38,16 @@ public class Offers {
 	}
 	
 	public void add(Offer offer) {
-		var al = offers.get(offer.resource);
-		al.add(offer);
+		var al = get(offer.resource);
 		if(al.size() == 0) {
 			offers.put(offer.resource, al);
 		}
+		al.add(offer);
+	}
+	
+	public void insert(Offer offer) throws Exception {
+		add(offer);
+		offer.insert();
 	}
 	
 	public ArrayList<Offer> get(Resource resource) {
@@ -64,4 +69,41 @@ public class Offers {
 		}
 		
 	}
+	
+	public ArrayList<Offer> search(Offer search) throws Exception {
+		ArrayList<Offer> searched = new ArrayList<>();
+		
+		Connection con = ConnectionProvider.getCon();
+		
+		{
+			PreparedStatement ps = con.prepareStatement("select * from offers where user_id=? and resource=? and buy=?;");
+			ps.setLong(1, user_id);
+			ps.setInt(2, search.resource.getID());
+			ps.setBoolean(3, search.buy);
+			
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				var offer = Offer.create(rs);
+				searched.add(offer);
+			}
+		}
+		
+		{
+			PreparedStatement ps = con.prepareStatement("select * from offers where resource=? and buy=? order by price " + (search.buy ? "asc" : "desc") + " limit 10;");
+			ps.setInt(1, search.resource.getID());
+			ps.setBoolean(2, !search.buy);
+			ps.setString(3, search.buy ? "asc" : "desc");
+			
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				var offer = Offer.create(rs);
+				searched.add(offer);
+			}
+		}
+		
+		return searched;
+	}
+	
 }

@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import data.User;
 
-@WebServlet("/update")
-public class UpdateServlet extends HttpServlet {
+@WebServlet("/search")
+public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,7 +35,7 @@ public class UpdateServlet extends HttpServlet {
 			
 		}
 		
-		request.getRequestDispatcher("/WEB-INF/update.jsp").include(request, response);
+		request.getRequestDispatcher("/WEB-INF/search.jsp").include(request, response);
 		
 	}
 	

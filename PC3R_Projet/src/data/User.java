@@ -21,20 +21,18 @@ public class User {
 	public final long id;
 	public final String name;
 	public long money;
-	public final Production production;
-	public final Offers offers;
+	private Production production;
+	private Offers offers;
 	
-	public User(long id, String name, long money, Production production, Offers offers) {
+	public User(long id, String name, long money) {
 		this.id = id;
 		this.name = name;
 		this.money = money;
-		this.production = production;
-		this.offers = offers;
 	}
 	
 	public static User create(ResultSet rs) throws Exception {
 		var id = rs.getLong("id");
-		return new User(id, rs.getString("user"), rs.getLong("money"), Production.create(id), Offers.create(id));
+		return new User(id, rs.getString("user"), rs.getLong("money"));
 		
 	}
 	
@@ -150,6 +148,16 @@ public class User {
 		disconnect(request.getSession());
 	}
 	
+	public Production getProduction() throws Exception {
+		if(production == null) production = Production.create(id);
+		return production;
+	}
+	
+	public Offers getOffers() throws Exception {
+		if(offers == null) offers = Offers.create(id);
+		return offers;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -173,14 +181,6 @@ public class User {
 		int rows = ps.executeUpdate();
 		
 		if(rows == 0) throw new SQLException("No updates");
-		
-	}
-	
-	public void updateRec() throws Exception {
-		
-		update();
-		production.update();
-		offers.update();
 		
 	}
 

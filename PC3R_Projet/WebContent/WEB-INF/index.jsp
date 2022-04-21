@@ -27,7 +27,7 @@
 			<h2 class="">Trade</h2>
 			
 				<div>
-					<form  method="post" action="/">
+					<form method="post" action="/">
 						<div class="form-group">
 						    <label for="login-user">Username</label>
 						    <input type="text" class="form-control" id="login-user" name="user" placeholder="Enter username">

@@ -10,7 +10,6 @@ function updateCurrencySpy() {
 	});
 	
 	$(".currency").html((index, html) => {
-		console.log(html);
 		return "$"+formatNumber(html);
 	});
 }

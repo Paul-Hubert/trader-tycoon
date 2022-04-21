@@ -55,7 +55,7 @@
 			
 						<%
 						for (Resource res : Resource.values()) {
-							ResourceProduction rp = user.production.get(res);
+							ResourceProduction rp = user.getProduction().get(res);
 						%>
 						
 						<li id="<%=res%>" class="<%=res%> list-group-item list-group-item-dark bg-dark">
@@ -82,16 +82,17 @@
 				</div>
 				
 				<div class="col">
-					<form>
+	
+					<form id="search" class="auto-submit" method="post" action="/action">
 					
 						<div class="form-check form-check-inline mb-2">
 							<input class="form-check-input" type="radio" name="achat_vente" value="achat" required>
-					  			<label class="form-check-label">Acheter</label>
+					  		<label class="form-check-label">Buy</label>
 						</div>
 						
 						<div class="form-check form-check-inline mb-2">
 					  		<input class="form-check-input" type="radio" name="achat_vente" value="vente" required>
-					  		<label class="form-check-label">Vendre</label>
+					  		<label class="form-check-label">Sell</label>
 						</div>
 						
 						<div class="form-group">
@@ -100,10 +101,9 @@
 						      	
 						      	<%
 								for (Resource res : Resource.values()) {
-									ResourceProduction rp = user.production.get(res);
 								%>
 								
-								<option value="<%=res %>"><%=res %></option>
+								<option value="<%=res.getID() %>"><%=res %></option>
 								
 								<%
 								}
@@ -122,11 +122,30 @@
 					    	<input type="number" step=1 class="area mb-2" placeholder="" name="quantity" required>
 					    </div>
 					  	
-					  	<div class="form-group">
-					  		<button type="submit" class="btn btn-secondary mb-2">Publier</button>
+					  	<div class="form-group row">
+					  		<button type="button" onclick="search()" name="action" value="search" class="btn btn-secondary m-2 col-md-2">Search</button>
+					  		<button type="button" onclick="publish()" name="action" value="publish" class="btn btn-secondary m-2 col-md-2">Publish</button>
 					  	</div>
 					</form>
+					
+					<li id="template" class="list-group-item list-group-item-dark bg-dark" hidden>
+						<div class="card text-white dark mb-3">
+							<div class="card-body">
+						    	<h6 class="card-subtitle1 mb-2 text-muted">Price : <span class="price currency"></span></h6>
+						    	<h6 class="card-subtitle1 mb-2 text-muted">Quantity : <span class="quantity currency"></span></h6>
+								<button type="button" class="delete btn btn-secondary">Delete</button>
+						  	</div>
+						</div>
+					</li>
+					
+					<ul id="offer-list" class="scroll group-list bg-dark">
+					
+						
+			
+					</ul>
+					
 				</div>
+				
 			</div>
 			
 	
