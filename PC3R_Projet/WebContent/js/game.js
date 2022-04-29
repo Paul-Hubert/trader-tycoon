@@ -69,7 +69,6 @@ function searchResults(data) {
 		
 		offer_card.attr("id", "modify");
 		
-		
 		$("#modify .price").html(money(offer.price));
 		
 		console.log($("#modify .price").html());

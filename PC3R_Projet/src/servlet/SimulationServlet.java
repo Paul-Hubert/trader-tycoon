@@ -15,23 +15,33 @@ public class SimulationServlet implements ServletContextListener {
     
 	private ScheduledExecutorService scheduler;
 	
+	public static long SIMULATION_INTERVAL = 1000;
+	
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 	    scheduler = Executors.newScheduledThreadPool(16);
 	    
+	    try {
+			
+			World world = World.create();
+			
+			scheduler.scheduleAtFixedRate(() -> {
+				
+				//long start = System.currentTimeMillis();
+				try {
+					world.step(scheduler);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				//long diff = System.currentTimeMillis() - start;
+				
+			}, 0, SIMULATION_INTERVAL, TimeUnit.MILLISECONDS);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	    
-	    scheduler.scheduleAtFixedRate(() -> {
-	    	
-			try {
-				
-				World world = World.create();
-				world.step(scheduler);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-	    	
-	    }, 0, 1, TimeUnit.SECONDS);
 	}
 
 	@Override
