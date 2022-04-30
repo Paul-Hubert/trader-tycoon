@@ -28,6 +28,13 @@ public class UpdateServlet extends HttpServlet {
 			User user = User.getConnected(request.getSession());
 			request.setAttribute("user", user);
 			
+			data.Offer search = (data.Offer) request.getSession().getAttribute("lastOffer");
+			if(search != null) {
+				var offers = user.getOffers().search(search);
+				
+				request.setAttribute("offers", offers);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			

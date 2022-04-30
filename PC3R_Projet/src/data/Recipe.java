@@ -25,7 +25,7 @@ public class Recipe {
 			int c = ing.getCount();
 			result += r.name() + "("+String.valueOf(c)+")";
 		}
-		System.out.println(result);
+		//System.out.println(result);
 		return result;
 	}
 	

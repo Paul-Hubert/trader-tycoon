@@ -1,5 +1,6 @@
 
 function updateCurrencySpy() {
+/*
 	$("input[data-type='currency']").on({
 	    keyup: function() {
 	      formatCurrency($(this));
@@ -8,10 +9,13 @@ function updateCurrencySpy() {
 	      formatCurrency($(this), "blur");
 	    }
 	});
+	*/
 	
+	/*
 	$(".currency").html((index, html) => {
 		return "$"+formatNumber(html);
 	});
+	*/
 }
 
 function formatNumber(n) {

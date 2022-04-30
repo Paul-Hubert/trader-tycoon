@@ -10,6 +10,7 @@
 	User user = (User) request.getAttribute("user");
 	%>
 	"user": "<%= user.name %>",
+	"user_id": "<%= user.id %>",
 	"money": <%= user.money %>,
 	"resources": {
 		<%
@@ -30,6 +31,27 @@
 		first = false;
 		}
 		%>
-	}
+	},
+	"offers": [
+		<%
+		first = true;
+		Object offers = request.getAttribute("offers");
+		if(offers != null) {
+			for(Offer offer : (ArrayList<Offer>) offers) {
+		%><%= first ? "" : "," %>
+			{
+				"id": <%=offer.id %>,
+				"user_id": <%=offer.user_id %>,
+				"res_id": "<%=offer.resource %>",
+				"buy": <%=offer.buy %>,
+				"price": <%=offer.price %>,
+				"quantity": <%=offer.quantity %>
+			}
+		<%
+			first = false;
+			}
+		}
+		%>
+	]
 
 }

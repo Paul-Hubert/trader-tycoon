@@ -76,7 +76,12 @@ public class User {
 	}
 	
 	public static User getConnected(HttpSession session) throws Exception {
-		return User.create(getConnectedID(session));
+		try {
+			return User.create(getConnectedID(session));
+		} catch(SQLException e) {
+			disconnect(session);
+			return null;
+		}
 	}
 	
 	public static void login(HttpServletRequest request) throws Exception {

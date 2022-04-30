@@ -27,12 +27,11 @@ CREATE TABLE production (
 );
 
 CREATE TABLE offers (
+	id BIGINT NOT NULL AUTO_INCREMENT,
 	user_id BIGINT NOT NULL,
 	resource INT NOT NULL,
 	buy BOOLEAN NOT NULL,
 	price BIGINT NOT NULL,
 	quantity BIGINT NOT NULL,
-	FOREIGN KEY (user_id)
-        REFERENCES users(id)
-        ON DELETE CASCADE
+	PRIMARY KEY (id)
 );

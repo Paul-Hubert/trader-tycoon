@@ -48,7 +48,7 @@
 			<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-secondary">
 				<span class="left navbar-brand">Game</span>
 				<span id="username" class="navbar-text"><%= user.name %></span>
-				<span class="left navbar-text"><span id="money" class="currency"><%=Money.format(user.money) %></span></span>
+				<span class="left navbar-text">$<span id="money" class="currency"><%=Money.format(user.money) %></span></span>
 				<form class="right" method="post" action="/">
 					<button type="submit" name="action" value="logout"
 						class="right btn btn-secondary">Log out</button>
@@ -91,10 +91,10 @@
 							    	<h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
 									<div class="form-group">
 										<label class="form-check-label">Research investment : </label>
-					    				<input type="text" data-type="currency" step=0.01 class="research-cost area mb-2" name="invest" value="<%=rp.research_cost %>">
+					    				$<input type="text" data-type="currency" step=0.01 class="research-cost area mb-2" name="invest" value="<%=rp.research_cost %>">
 					    			</div>
 							    	<h6 class="card-subtitle1 mb-2 text-muted">Production efficiency : <span class="research"><%=rp.research %></span></h6>
-									<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production for <span class="production-cost currency"><%=Money.format(rp.getProductionCost()) %></span></button>
+									<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production for $<span class="production-cost currency"><%=Money.format(rp.getProductionCost()) %></span></button>
 							  	</div>
 							</div>
 						</li>
@@ -111,18 +111,17 @@
 					<form id="search" class="auto-submit" method="post" action="/action">
 					
 						<div class="form-check form-check-inline mb-2">
-							<input class="form-check-input" type="radio" name="achat_vente" value="achat" required>
+							<input class="form-check-input" type="radio" name="achat_vente" value="true" required checked>
 					  		<label class="form-check-label">Buy</label>
 						</div>
 						
 						<div class="form-check form-check-inline mb-2">
-					  		<input class="form-check-input" type="radio" name="achat_vente" value="vente" required>
+					  		<input class="form-check-input" type="radio" name="achat_vente" value="false" required>
 					  		<label class="form-check-label">Sell</label>
 						</div>
 						
 						<div class="form-group">
 							<select class="custom-select mb-2" name="resource" required>
-						      	<option value="">Select Resource</option>
 						      	
 						      	<%
 								for (Resource res : Resource.values()) {
@@ -138,13 +137,13 @@
 				     	</div>
 				     	
 				     	<div class="form-group form-check-inline">
-					    	<label class="form-check-label">Target Price</label>
-					    	<input type="text" data-type="currency" step=0.01 class="area mb-2" placeholder="$" name="price" required>
+					    	<label class="form-check-label">Target Price $</label>
+					    	<input type="text" data-type="currency" step=0.01 class="area mb-2" value="1" name="price" required>
 					  	</div>
 					  	
 					  	<div class="form-group">
 					    	<label class="form-check-label">Target Quantity</label>
-					    	<input type="number" step=1 class="area mb-2" placeholder="" name="quantity" required>
+					    	<input type="number" step=1 class="area mb-2" value="10" name="quantity" required>
 					    </div>
 					  	
 					  	<div class="form-group row">
@@ -153,18 +152,21 @@
 					  	</div>
 					</form>
 					
-					<li id="template" class="list-group-item list-group-item-dark bg-dark" hidden>
-						<div class="card text-white dark mb-3">
-							<div class="card-body">
-						    	<h6 class="card-subtitle1 mb-2 text-muted">Price : <span class="price currency"></span></h6>
-						    	<h6 class="card-subtitle1 mb-2 text-muted">Quantity : <span class="quantity currency"></span></h6>
-								<button type="button" class="delete btn btn-secondary">Delete</button>
-						  	</div>
-						</div>
-					</li>
+					<ul hidden>
+						<li id="template" class="list-group-item list-group-item-dark bg-dark">
+							<div class="card text-white dark mb-3">
+								<div class="card-body">
+							    	<h6 class="card-subtitle1 mb-2 text-muted">User : <span class="offerer"></span></h6>
+							    	<h6 class="card-subtitle1 mb-2 text-muted">Price : $<span class="price currency"></span></h6>
+							    	<h6 class="card-subtitle1 mb-2 text-muted">Quantity : <span class="quantity"></span></h6>
+									<button type="button" onclick="deleteOffer(this)" class="delete btn btn-secondary">Delete</button>
+							  	</div>
+							</div>
+						</li>
+					</ul>
 					
 					<ul id="offer-list" class="scroll group-list bg-dark">
-					
+						
 						
 			
 					</ul>
