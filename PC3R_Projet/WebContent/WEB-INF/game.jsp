@@ -92,7 +92,7 @@
 									}
 									%>
 									<%=craft %>
-									<h6 class="card-subtitle1 mb-2 text-muted">Price : <span class="price"><%=price %></span></h6>
+									<h6 class="card-subtitle1 mb-2 text-muted">Price : $<span class="price"><%=Money.format(price) %></span></h6>
 							    	<h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
 							    	<h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
 									<div class="form-group">
