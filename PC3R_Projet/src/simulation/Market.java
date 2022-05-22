@@ -15,6 +15,8 @@ import database.ConnectionProvider;
 
 public class Market {
 	
+	private static long[] prices = new long[Resource.values().length];
+	
 	public static boolean canAutoSell(Resource res) {
 		switch(res) {
 			case bread:
@@ -28,6 +30,9 @@ public class Market {
 	
 	public static long price(Resource res) {
 		
+		return prices[res.getID()];
+		
+		/*
 		switch(res) {
 			case bread:
 				return 1000;
@@ -38,6 +43,7 @@ public class Market {
 			default:
 				return 0;
 		}
+		*/
 		
 	}
 	
@@ -171,6 +177,10 @@ public class Market {
 			
 		}
 		
+		
+	}
+
+	public static void updatePrice() {
 		
 	}
 	

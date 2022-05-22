@@ -17,6 +17,7 @@ public class SimulationServlet implements ServletContextListener {
 	private ScheduledExecutorService scheduler;
 	
 	public static long SIMULATION_INTERVAL = 1000;
+	public static long PRICE_INTERVAL_MINUTES = 1;
 	
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
@@ -28,17 +29,24 @@ public class SimulationServlet implements ServletContextListener {
 			
 			scheduler.scheduleAtFixedRate(() -> {
 				
-				//long start = System.currentTimeMillis();
+				try {
+					Market.updatePrice();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}, 0, PRICE_INTERVAL_MINUTES, TimeUnit.MINUTES);
+			
+			scheduler.scheduleAtFixedRate(() -> {
+				
 				try {
 					Market.step(scheduler);
 					world.step(scheduler);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				//long diff = System.currentTimeMillis() - start;
 				
 			}, 0, SIMULATION_INTERVAL, TimeUnit.MILLISECONDS);
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
