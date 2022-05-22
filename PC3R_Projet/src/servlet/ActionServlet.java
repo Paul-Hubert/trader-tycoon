@@ -33,11 +33,11 @@ public class ActionServlet extends HttpServlet {
 			
 			User user = User.getConnected(request.getSession());
 			var action = request.getParameter("action");
-			var resource = request.getParameter("resource");
-			Resource r = Resource.get(Integer.parseInt(resource));
 			
 			if (action.equals("addProduction")) {
-				
+
+				var resource = request.getParameter("resource");
+				Resource r = Resource.get(Integer.parseInt(resource));
 				ResourceProduction rp = user.getProduction().get(r);
 				
 				try {
@@ -46,12 +46,16 @@ public class ActionServlet extends HttpServlet {
 				} catch(NotEnoughMoneyException e) {}
 				
 			} else if(action.equals("publish")) {
+
+				var resource = request.getParameter("resource");
+				Resource r = Resource.get(Integer.parseInt(resource));
 				
-				boolean buy = Boolean.parseBoolean(request.getParameter("achat_vente"));
+				boolean buy = Boolean.parseBoolean(request.getParameter("buy"));
 				long price = Money.parse(request.getParameter("price"));
 				long quantity = Long.parseLong(request.getParameter("quantity"));
 				
 				Offer offer = new Offer(user.id, r, buy, price, quantity);
+				request.getSession().setAttribute("lastOffer", offer);
 				
 				user.getOffers().insert(offer);
 				
@@ -59,24 +63,39 @@ public class ActionServlet extends HttpServlet {
 				
 				request.setAttribute("offers", offers);
 				
-				request.getRequestDispatcher("/search").forward(request, response);
+				request.getRequestDispatcher("/update").forward(request, response);
 				return;
 				
 			}  else if(action.equals("search")) {
+
+				var resource = request.getParameter("resource");
+				Resource r = Resource.get(Integer.parseInt(resource));
 				
-				boolean buy = Boolean.parseBoolean(request.getParameter("achat_vente"));
+				boolean buy = Boolean.parseBoolean(request.getParameter("buy"));
 				long price = Money.parse(request.getParameter("price"));
 				long quantity = Long.parseLong(request.getParameter("quantity"));
 				
 				Offer offer = new Offer(user.id, r, buy, price, quantity);
+				request.getSession().setAttribute("lastOffer", offer);
 				
 				var offers = user.getOffers().search(offer);
 				
 				request.setAttribute("offers", offers);
 				
-				request.getRequestDispatcher("/search").forward(request, response);
+				request.getRequestDispatcher("/update").forward(request, response);
 				return;
 				
+			} else if(action.equals("delete")) {
+				
+				long id = Integer.parseInt(request.getParameter("id"));
+				
+				Offer.delete(id);
+				
+				request.getRequestDispatcher("/update").forward(request, response);
+				return;
+				
+			} else {
+				System.err.println("Unknow action : " + action);
 			}
 			
 			request.getRequestDispatcher("/update").forward(request, response);

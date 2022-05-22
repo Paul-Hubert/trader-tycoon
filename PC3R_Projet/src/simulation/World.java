@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import data.Crafting;
@@ -91,11 +92,13 @@ public class World {
 		
 		ResultSet users = userps.executeQuery();
 		
+		ArrayList<ScheduledFuture<?>> futures = new ArrayList<>();
+		
 		while(users.next()) {
 			
 			final var user_id = users.getLong("id");
 			
-			scheduler.schedule(() -> {
+			futures.add(scheduler.schedule(() -> {
 
 				try {
 					
@@ -105,10 +108,13 @@ public class World {
 					e.printStackTrace();
 				}
 
-			}, 0, TimeUnit.SECONDS);
+			}, 0, TimeUnit.SECONDS));
 			
 		}
-	
+		
+		for(var future : futures) {
+			future.get();
+		}
 		
 	}
 	

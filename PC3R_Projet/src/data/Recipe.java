@@ -26,7 +26,7 @@ public class Recipe {
 			result += r.name() + "("+String.valueOf(c)+"), ";
 		}
 		result = result.substring(0, result.length()-2);
-		System.out.println(result);
+		//System.out.println(result);
 		return result;
 	}
 	

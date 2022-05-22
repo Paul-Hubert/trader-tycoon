@@ -90,10 +90,10 @@ public class Offers {
 		}
 		
 		{
-			PreparedStatement ps = con.prepareStatement("select * from offers where resource=? and buy=? order by price " + (search.buy ? "asc" : "desc") + " limit 10;");
+			PreparedStatement ps = con.prepareStatement("select * from offers where resource=? and buy=? and user_id!=? order by price " + (search.buy ? "asc" : "desc") + " limit 10;");
 			ps.setInt(1, search.resource.getID());
 			ps.setBoolean(2, !search.buy);
-			ps.setString(3, search.buy ? "asc" : "desc");
+			ps.setLong(3, user_id);
 			
 			ResultSet rs=ps.executeQuery();
 			
