@@ -107,6 +107,7 @@ function reload(data) {
 
 
 
+
 window.addEventListener("load", (e) => {
 	updateCurrencySpy();
     $.ajaxSetup({ cache: false });

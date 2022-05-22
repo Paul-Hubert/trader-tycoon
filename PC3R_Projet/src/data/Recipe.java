@@ -23,8 +23,9 @@ public class Recipe {
 		for(ResourceStack ing : ingredients) {
 			Resource r = ing.getResource();
 			int c = ing.getCount();
-			result += r.name() + "("+String.valueOf(c)+")";
+			result += r.name() + "("+String.valueOf(c)+"), ";
 		}
+		result = result.substring(0, result.length()-2);
 		//System.out.println(result);
 		return result;
 	}

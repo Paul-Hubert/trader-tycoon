@@ -1,4 +1,5 @@
 <%@ page import="data.*"%>
+<%@ page import="simulation.Market"%>
 
 <!DOCTYPE html>
 <html>
@@ -62,6 +63,7 @@
 						<%
 						for (Resource res : Resource.values()) {
 							ResourceProduction rp = user.getProduction().get(res);
+							long price = Market.price(res);
 						%>
 						
 						<li id="<%=res%>" class="<%=res%> list-group-item list-group-item-dark bg-dark">
@@ -71,22 +73,26 @@
 								<div class="form-group">
 									
 							  		<h5 class="resource card-title">
-							  		<%=res %>
-							  		<% Recipe recipe = Crafting.recipes.get(res);
-									if(recipe!=null){
-										String info = recipe.getInfo();
-									%>
-							  		<span title=<%=info %>>
+									<%=res%>
+							  		<%-- <span title=<%=info %>>
 							  		<svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
-							  		</span>
-							  		<%} %>
+							  		</span> --%>
+							  		
 							  		</h5>
 							  		
 							  		
 
 									
 									</div>
-									
+									<%
+									Recipe recipe = Crafting.recipes.get(res);
+									String craft="";
+									if(recipe!=null){
+										craft = "<h6 class='card-subtitle1 mb-2 text-muted'>Craft : <span class='craft'>" + recipe.getInfo() + "<//span></h6>";
+									}
+									%>
+									<%=craft %>
+									<h6 class="card-subtitle1 mb-2 text-muted">Price : <span class="price"><%=price %></span></h6>
 							    	<h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
 							    	<h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
 									<div class="form-group">
@@ -177,5 +183,6 @@
 			
 	
 		</div>
+		
 	</body>
 </html>
