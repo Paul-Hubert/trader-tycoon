@@ -5,7 +5,7 @@
 .scroll{
 	position: relative;
 	overflow-y: scroll;
-	height: 800px;
+	height: 90vh;
 	max-width: fit-content;
 }
 
@@ -55,6 +55,13 @@ nav{
   border-radius: 20px;
   border: 3px solid light-gray; 
   }
+
+
+html, body {
+	margin: 0; 
+	height: 100%; 
+	overflow: hidden
+}
 
 body::-webkit-scrollbar {
   margin-top: 3%;
