@@ -174,6 +174,17 @@ public class User {
 		return money;
 	}
 	
+	public static String getfirst() throws Exception {
+		Connection con = ConnectionProvider.getCon();
+		var ps = con.prepareStatement("select name,money from users order by money;");
+		
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		String name = rs.getString("name");
+		Long money = rs.getLong("money");
+		return name + " $"+money;
+	}
+	
 	public void update() throws Exception {
 		
 		Connection con = ConnectionProvider.getCon();

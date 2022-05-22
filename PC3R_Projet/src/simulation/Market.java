@@ -39,22 +39,7 @@ public class Market {
 	}
 	
 	public static long price(Resource res) {
-		
-		return prices[res.getID()];
-		
-		/*
-		switch(res) {
-			case bread:
-				return 1000;
-			case car:
-				return 1000000;
-			case phone:
-				return 100000;
-			default:
-				return 0;
-		}
-		*/
-		
+		return prices[res.getID()];		
 	}
 	
 	public static void step(ScheduledExecutorService scheduler) throws Exception {
