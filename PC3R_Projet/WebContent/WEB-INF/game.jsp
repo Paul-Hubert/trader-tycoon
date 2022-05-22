@@ -101,7 +101,7 @@
 					    				$<input type="text" data-type="currency" step=0.01 class="research-cost area mb-2" name="invest" value="<%=rp.research_cost %>">
 					    			</div>
 							    	<h6 class="card-subtitle1 mb-2 text-muted">Production efficiency : <span class="research"><%=rp.research %></span></h6>
-									<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production for $<span class="production-cost currency"><%=Money.format(rp.getProductionCost()) %></span></button>
+									<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production for <span class="production-cost currency"><%=Money.format(rp.getProductionCost()) %></span></button>
 							  	</div>
 							</div>
 						</li>
