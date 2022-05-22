@@ -23,7 +23,7 @@
 				"id": <%=res.getID() %>,
 				"name": "<%=res %>",
 				"count": <%=rp.count %>,
-				"price": <%= Market.price(res) %>
+				"price": <%= Market.price(res) %>,
 				"production_cost": <%=rp.getProductionCost() %>,
 				"production": <%=rp.production %>,
 				"research_cost": <%=rp.research_cost %>,

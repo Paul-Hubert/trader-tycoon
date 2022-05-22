@@ -145,8 +145,9 @@ public class Market {
 					}
 				}
 				
-				long amount = money/price;
-				if(amount>stock) amount = stock;
+				long buyAmount = Math.min(money/price, buyers.getLong("o.quantity") - buyers.getLong("p.count"));
+				long sellAmount = stock - sellers.getLong("o.quantity");
+				long amount = Math.min(sellAmount, buyAmount);
 
 				System.out.println("buy " + amount + " " + res);
 				
@@ -177,10 +178,13 @@ public class Market {
 			
 		}
 		
-		
 	}
 
 	public static void updatePrice() {
+		
+		prices[Resource.bread.getID()] = 1000;
+		prices[Resource.phone.getID()] = 100000;
+		prices[Resource.car.getID()] = 1000000;
 		
 	}
 	
