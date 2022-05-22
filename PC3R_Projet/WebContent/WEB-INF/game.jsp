@@ -54,7 +54,7 @@
 					<button type="submit" name="action" value="logout"
 						class="right btn btn-secondary">Log out</button>
 				</form>
-				<span>Top player : <%= User.getFirst() %></span>
+				<span>Top player : <span id="first"><%= User.getFirst() %></span></span>
 			</nav>
 	
 			<div class="row m-top">
@@ -159,8 +159,8 @@
 					  	</div>
 					</form>
 					
-					<ul hidden>
-						<li id="template" class="scroll2 list-group-item list-group-item-dark bg-dark">
+					<ul hidden class= "scroll2">
+						<li id="template" class="list-group-item list-group-item-dark bg-dark">
 							<div class="card text-white dark mb-3">
 								<div class="card-body">
 							    	<h6 class="card-subtitle1 mb-2 text-muted">User : <span class="offerer"></span></h6>

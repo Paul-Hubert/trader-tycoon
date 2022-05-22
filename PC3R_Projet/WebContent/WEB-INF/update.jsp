@@ -13,6 +13,7 @@
 	"user": "<%= user.name %>",
 	"user_id": "<%= user.id %>",
 	"money": <%= user.money %>,
+	"topPlayer": "<%= User.getFirst() %>",
 	"resources": {
 		<%
 		boolean first = true;

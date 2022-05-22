@@ -12,7 +12,7 @@
 .scroll2{
 	position: relative;
 	overflow-y: scroll;
-	height: 80vh;
+	height: 70%;
 	max-width: fit-content;
 }
 
