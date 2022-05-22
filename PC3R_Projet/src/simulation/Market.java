@@ -126,6 +126,7 @@ public class Market {
 		} else {
 		
 			if(!sellers.next()) return;
+			prices[res.getID()] = sellers.getLong("o.price");
 			
 			while(buyers.next()) {
 				
@@ -140,17 +141,34 @@ public class Market {
 					}
 				}
 				
-				long amount = money/price;
-				if(amount>stock) amount = stock;
-
-				System.out.println("buy " + amount + " " + res);
+				long buyAmount = Math.min(money/price, buyers.getLong("o.quantity") - buyers.getLong("p.count"));
+				long sellAmount = stock - sellers.getLong("o.quantity");
+				long amount = Math.min(sellAmount, buyAmount);
 				
+				System.out.println("buy " + amount + " " + res + " by " + buyers.getLong("p.user_id"));
+
 				if(amount<=0) continue;
 				
 				long cost = amount*price;
 				
 				long buyer = buyers.getLong("u.id");
 				long seller = sellers.getLong("u.id");
+
+				
+				if(buyers.getLong("p.user_id") == 0) {
+					PreparedStatement ps = con.prepareStatement("insert into production (user_id, resource, count, production, research_cost, research) values (?,?,?,?,?,?);");
+					ps.setLong(1, buyer);
+					ps.setInt(2, res.getID());
+					ps.setLong(3, 0);
+					ps.setLong(4, 0);
+					ps.setLong(5, 0);
+					ps.setLong(6, 0);
+					
+					ps.executeUpdate();
+					continue;
+				}
+				
+				
 				
 				PreparedStatement buyerUpdate = con.prepareStatement("update users as u, production as p set u.money=u.money-?, p.count=p.count+? where p.resource=? and u.id=? and p.user_id=u.id");
 				buyerUpdate.setLong(1, cost);
@@ -158,7 +176,7 @@ public class Market {
 				buyerUpdate.setInt(3, res.getID());
 				buyerUpdate.setLong(4, buyer);
 				
-				buyerUpdate.execute();
+				buyerUpdate.executeUpdate();
 				
 				PreparedStatement sellerUpdate = con.prepareStatement("update users as u, production as p set u.money=u.money+?, p.count=p.count-? where p.resource=? and u.id=? and p.user_id=u.id");
 				sellerUpdate.setLong(1, cost);
@@ -166,20 +184,20 @@ public class Market {
 				sellerUpdate.setInt(3, res.getID());
 				sellerUpdate.setLong(4, seller);
 				
-				sellerUpdate.execute();
+				sellerUpdate.executeUpdate();
 				
 			}
 			
 		}
 		
-		
 	}
 
 	public static void updatePrice() throws IOException, InterruptedException, ParseException {
+		
 		HttpRequest request = HttpRequest.newBuilder()
 				.uri(URI.create("https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=AAPL%2CFB%2CTSLA"))
 				.header("accept", "application/json")
-				.header("x-api-key", "shqz7Hpy8z2UW6eJXWMly3nl8yw5TEmWLrStHzL8")
+				.header("x-api-key", "wLp43KWWlg9EpyP3DxCxvp4Pz488rpE2VQv2DN37")
 				.method("GET", HttpRequest.BodyPublishers.noBody())
 				.build();
 			
@@ -188,17 +206,17 @@ public class Market {
 			
 	    JSONParser parse = new JSONParser();
 	    JSONObject data_obj = (JSONObject) parse.parse(response.body());
-	
+	    
 	    JSONObject obj = (JSONObject) data_obj.get("quoteResponse");
-		    
+		
 	    JSONArray result = (JSONArray) obj.get("result");
 		    
 	    for (int i = 0; i < result.size(); i++) {
 	    	JSONObject data = (JSONObject) result.get(i);
-	    	Double price = (Double) data.get("regularMarketPrice");	    	
-	    	if (i == 0) prices[Resource.bread.getID()] = price.longValue() / 10;
-	    	if (i == 1) prices[Resource.phone.getID()] = price.longValue() * 5;
-	    	if (i == 2) prices[Resource.car.getID()] = price.longValue() * 10;
+	    	long price = ((Double) (((double) data.get("regularMarketPrice")) * 100)).longValue();
+	    	if (i == 0) prices[Resource.bread.getID()] = price / 10;
+	    	if (i == 1) prices[Resource.phone.getID()] = price * 5;
+	    	if (i == 2) prices[Resource.car.getID()] = price * 10;
 	    }
 	}
 	

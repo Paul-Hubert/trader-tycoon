@@ -14,23 +14,10 @@ import data.User;
 import database.ConnectionProvider;
 
 public class World {
-
-	public final ArrayList<User> users = new ArrayList<>();
 	
 	public static World create() throws Exception {
 		
 		World world = new World();
-		
-		Connection con = ConnectionProvider.getCon();
-		
-		PreparedStatement ps=con.prepareStatement("select * from users;");
-		
-		ResultSet rs=ps.executeQuery();
-		
-		while(rs.next()) {
-
-			world.users.add(User.create(rs));
-		}
 		
 		return world;
 	}

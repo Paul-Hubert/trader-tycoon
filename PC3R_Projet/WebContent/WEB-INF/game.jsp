@@ -1,5 +1,5 @@
 <%@ page import="data.*"%>
-<%@ page import="simulation.Market"%>
+<%@ page import="simulation.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -54,6 +54,7 @@
 					<button type="submit" name="action" value="logout"
 						class="right btn btn-secondary">Log out</button>
 				</form>
+				<span>Top player : <span id="first"><%= User.getFirst() %></span></span>
 			</nav>
 	
 			<div class="row m-top">
@@ -158,7 +159,7 @@
 					  	</div>
 					</form>
 					
-					<ul hidden>
+					<ul hidden class= "scroll2">
 						<li id="template" class="list-group-item list-group-item-dark bg-dark">
 							<div class="card text-white dark mb-3">
 								<div class="card-body">

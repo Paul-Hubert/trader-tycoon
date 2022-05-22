@@ -53,6 +53,7 @@ function deleteOffer(e) {
 function reload(data) {
     
     $("#money").html(money(data.money));
+ 	$("#first").html(data.topPlayer);
 
     for(let i in data.resources) {
     	let res = data.resources[i];

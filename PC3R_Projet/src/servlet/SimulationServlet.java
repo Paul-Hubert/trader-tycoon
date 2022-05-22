@@ -17,7 +17,7 @@ public class SimulationServlet implements ServletContextListener {
 	private ScheduledExecutorService scheduler;
 	
 	public static long SIMULATION_INTERVAL = 1000;
-	public static long PRICE_INTERVAL_MINUTES = 1;
+	public static long PRICE_INTERVAL_MINUTES = 15;
 	
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
