@@ -88,6 +88,7 @@ function searchResults(data) {
 
 
 
+
 window.addEventListener("load", (e) => {
 	updateCurrencySpy();
     $.ajaxSetup({ cache: false });
