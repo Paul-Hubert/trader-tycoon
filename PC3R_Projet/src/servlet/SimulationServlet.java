@@ -8,6 +8,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import simulation.Market;
 import simulation.World;
 
 @WebListener
@@ -29,6 +30,7 @@ public class SimulationServlet implements ServletContextListener {
 				
 				//long start = System.currentTimeMillis();
 				try {
+					Market.step(scheduler);
 					world.step(scheduler);
 				} catch (Exception e) {
 					e.printStackTrace();
