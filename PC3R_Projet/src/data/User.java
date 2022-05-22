@@ -174,15 +174,15 @@ public class User {
 		return money;
 	}
 	
-	public static String getfirst() throws Exception {
+	public static String getFirst() throws Exception {
 		Connection con = ConnectionProvider.getCon();
-		var ps = con.prepareStatement("select name,money from users order by money;");
+		var ps = con.prepareStatement("select user, money from users order by money desc;");
 		
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		String name = rs.getString("name");
+		String name = rs.getString("user");
 		Long money = rs.getLong("money");
-		return name + " $"+money;
+		return name + " $"+Money.format(money);
 	}
 	
 	public void update() throws Exception {

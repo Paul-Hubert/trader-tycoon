@@ -54,7 +54,7 @@
 					<button type="submit" name="action" value="logout"
 						class="right btn btn-secondary">Log out</button>
 				</form>
-				<span>Top player : <%=User.getfirst() %></span>
+				<span>Top player : <%= User.getFirst() %></span>
 			</nav>
 	
 			<div class="row m-top">
