@@ -28,6 +28,7 @@ public class User {
 		this.id = id;
 		this.name = name;
 		this.money = money;
+		
 	}
 	
 	public static User create(ResultSet rs) throws Exception {
@@ -61,10 +62,21 @@ public class User {
 		session.removeAttribute("id");
 	}
 	
-	public static boolean isConnected(HttpSession session) {
+	public static boolean isConnected(HttpSession session) throws Exception {
 		
 		var id = session.getAttribute("id");
-		return id != null;
+		if(id == null) return false;
+		
+		Connection con = ConnectionProvider.getCon();
+		
+		PreparedStatement ps=con.prepareStatement("select * from users where id=?;");
+		ps.setLong(1, (long) id);
+		
+		ResultSet rs=ps.executeQuery();
+		
+		if(!rs.next()) return false;
+		
+		return true;
 		
 	}
 	

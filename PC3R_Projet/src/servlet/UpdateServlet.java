@@ -14,16 +14,16 @@ public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		if(!User.isConnected(request.getSession())) {
-			response.sendRedirect("/");
-			return;
-		}
-		
-		response.setContentType("application/json");
-		response.setHeader("Content-Disposition", "inline");
-		
+
 		try {
+			if(!User.isConnected(request.getSession())) {
+				response.sendRedirect("/");
+				return;
+			}
+			
+			response.setContentType("application/json");
+			response.setHeader("Content-Disposition", "inline");
+		
 			
 			User user = User.getConnected(request.getSession());
 			request.setAttribute("user", user);

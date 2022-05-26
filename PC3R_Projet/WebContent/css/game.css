@@ -2,6 +2,29 @@
 	margin-top:6%;
 }
 
+span {
+	white-space:nowrap;
+}
+
+
+.navbar {
+	width: 100vw;
+}
+
+.navrow {
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	
+	height: 100%;
+	width: 100vw;
+}
+
+.navitem {
+	
+}
+
+
 .scroll{
 	position: relative;
 	overflow-y: scroll;

@@ -153,7 +153,7 @@ public class Market {
 				long buyer = buyers.getLong("u.id");
 				long seller = sellers.getLong("u.id");
 
-				System.out.println("buy " + amount + " " + res + " by " + buyers.getLong("p.user_id"));
+				//System.out.println("buy " + amount + " " + res + " by " + buyers.getLong("p.user_id"));
 				
 				if(buyers.getLong("p.user_id") == 0) {
 					PreparedStatement ps = con.prepareStatement("insert into production (user_id, resource, count, production, research_cost, research) values (?,?,?,?,?,?);");

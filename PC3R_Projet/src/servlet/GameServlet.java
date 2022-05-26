@@ -20,13 +20,13 @@ public class GameServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(!User.isConnected(request.getSession())) {
-			response.sendRedirect("/");
-			return;
-		}
-		
 		try {
 		
+			if(!User.isConnected(request.getSession())) {
+				response.sendRedirect("/");
+				return;
+			}
+			
 			User user = User.getConnected(request.getSession());
 			request.setAttribute("user", user);
 		
@@ -38,6 +38,8 @@ public class GameServlet extends HttpServlet {
 		}
 		
 		request.getRequestDispatcher("/WEB-INF/game.jsp").forward(request, response);
+		
+		
 		
 	}
 

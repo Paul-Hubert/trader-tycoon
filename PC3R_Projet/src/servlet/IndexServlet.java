@@ -20,12 +20,21 @@ public class IndexServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(User.isConnected(request.getSession())) {
-			response.sendRedirect("/game");
-			return;
-		}
+		try {
+			
+			if(User.isConnected(request.getSession())) {
+				response.sendRedirect("/game");
+				return;
+			}
 		
-		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			request.setAttribute("error", e.getMessage());
+			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+			
+		}
 		
 	}
 	
