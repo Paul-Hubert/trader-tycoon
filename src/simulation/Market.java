@@ -9,8 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.PriorityQueue;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -81,13 +79,6 @@ public class Market {
 		
 		ResultSet sellers = sellerStatement.executeQuery();
 		ResultSet buyers = buyerStatement.executeQuery();
-		
-		Comparator<Long> inverted = new Comparator<Long>() {
-            @Override
-            public int compare(Long s1, Long s2) {
-            	return -s1.compareTo(s2);
-            }
-        };
 		
 		if(Market.canAutoSell(res)) {
 			

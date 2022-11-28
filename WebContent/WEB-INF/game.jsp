@@ -162,7 +162,7 @@
 					  	</div>
 					</form>
 					
-					<ul hidden class= "scroll2">
+					<ul hidden="" class= "scroll2">
 						<li id="template" class="list-group-item list-group-item-dark bg-dark">
 							<div class="card text-white dark mb-3">
 								<div class="card-body">
