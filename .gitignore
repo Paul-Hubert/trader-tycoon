@@ -1,3 +1,4 @@
-/.metadata/
-PC3R_Projet/.settings
-build
+/bin/
+.project
+.metadata
+.settings

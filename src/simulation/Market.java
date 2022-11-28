@@ -72,11 +72,6 @@ public class Market {
 	public static void step(Resource res) throws Exception {
 		
 		Connection con = ConnectionProvider.getCon();
-		//a.user_id=ap.user_id and b.user_id=bp.user_id and a.resource=ap.resource and b.resource=bp.resource
-		
-		//PreparedStatement ps = con.prepareStatement("select * from offers as a inner join offers as b on, users as au, users as bu left join production ap on a.user_id=ap.user_id and a.resource=ap.resource where a.resource=b.resource and a.buy!=b.buy and a.buy=true and a.user_id!=b.user_id and a.user_id=au.id and b.user_id=bu.id;");
-		//PreparedStatement ps = con.prepareStatement("select * from offers as a inner join offers as b on a.resource=b.resource and a.buy!=b.buy and a.buy=true and a.user_id!=b.user_id left join production as ap on a.user_id=ap.user_id and a.resource=ap.resource left join production as bp on b.user_id=bp.user_id and b.resource=bp.resource inner join users as au on a.user_id=au.id inner join users bu on b.user_id=bu.id;");
-		//PreparedStatement ps = con.prepareStatement("select * from offers as a left join production as ap on a.user_id=ap.user_id and a.resource=ap.resource inner join users as au on a.user_id=au.id order by rand()");
 		
 		PreparedStatement sellerStatement = con.prepareStatement("select * from offers as o inner join production as p on o.user_id=p.user_id and o.resource=p.resource inner join users as u on o.user_id=u.id where o.resource=? and buy=false and p.count>0 order by o.price");
 		PreparedStatement buyerStatement = con.prepareStatement("select * from offers as o left join production as p on o.user_id=p.user_id and o.resource=p.resource inner join users as u on o.user_id=u.id where o.resource=? and buy=true and u.money>0 order by rand()");
@@ -110,8 +105,6 @@ public class Market {
 				long cost = amount*price;
 				
 				long seller = sellers.getLong("u.id");
-				
-				System.out.println("autosell " + amount + " " + res);
 				
 				PreparedStatement sellerUpdate = con.prepareStatement("update users as u, production as p set u.money=u.money+?, p.count=p.count-? where p.resource=? and u.id=? and p.user_id=u.id");
 				sellerUpdate.setLong(1, cost);
@@ -152,8 +145,6 @@ public class Market {
 				
 				long buyer = buyers.getLong("u.id");
 				long seller = sellers.getLong("u.id");
-
-				//System.out.println("buy " + amount + " " + res + " by " + buyers.getLong("p.user_id"));
 				
 				if(buyers.getLong("p.user_id") == 0) {
 					PreparedStatement ps = con.prepareStatement("insert into production (user_id, resource, count, production, research_cost, research) values (?,?,?,?,?,?);");
