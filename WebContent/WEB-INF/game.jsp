@@ -84,9 +84,6 @@
 							  		
 							  		</h5>
 							  		
-							  		
-
-									
 									</div>
 									<%
 									Recipe recipe = Crafting.recipes.get(res);
@@ -99,12 +96,12 @@
 									<h6 class="card-subtitle1 mb-2 text-muted">Price : $<span class="price"><%=Money.format(price) %></span></h6>
 							    	<h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
 							    	<h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
-									<div class="form-group">
-										<label class="form-check-label">Research investment : </label>
-					    				$<input type="text" data-type="currency" step=0.01 class="research-cost area mb-2" name="invest" value="<%=rp.research_cost %>">
+									<div class="card-subtitle1 form-group text-muted">
+										<label class="card-subtitle1 form-check-label">Research investment : </label>
+					    				$<input type="number" data-type="currency" step=0.01 class="research-cost area mb-2" name="invest" value="<%=rp.research_cost %>">
 					    			</div>
 							    	<h6 class="card-subtitle1 mb-2 text-muted">Production efficiency : <span class="research"><%=rp.research %></span></h6>
-									<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production for <span class="production-cost currency"><%=Money.format(rp.getProductionCost()) %></span></button>
+									<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production for $<span class="production-cost currency"><%=Money.format(rp.getProductionCost()) %></span></button>
 							  	</div>
 							</div>
 						</li>

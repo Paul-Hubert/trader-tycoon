@@ -15,6 +15,10 @@ function addProduction(resource) {
     $.post("/action", {"action":"addProduction", resource}, reload, "json").fail(error);
 }
 
+function changeResearch(resource) {
+	console.log(resource);
+    $.post("/action", {"action":"changeResearch", resource}, reload, "json").fail(error);
+}
 
 
 // Offers
