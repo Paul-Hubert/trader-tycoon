@@ -9,9 +9,11 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import data.Crafting;
+import data.Money;
 import data.Resource;
 import data.User;
 import database.ConnectionProvider;
+import exception.NotEnoughMoneyException;
 
 public class World {
 	
@@ -30,15 +32,32 @@ public class World {
 			
 			var rp = user.getProduction().get(resource);
 			
+			try {
+				user.pay(rp.research_cost);
+			
+				final double ratio = 2000;
+				var prob = 1. - ratio / (ratio+rp.research_cost/100.);
+	
+				if(Math.random() < prob) rp.research += 1;
+			} catch (NotEnoughMoneyException ex) {}
+			
+			var efficiency = (100. + rp.research/100.)/100.;
+			
+			long max = (long) (rp.production * efficiency);
+
+			if(rp.research_cost > 0) {
+				System.out.println(efficiency);
+				System.out.println(rp.production);
+				System.out.println(rp.production * efficiency);
+			}
+			
 			var recipe = Crafting.recipes.get(resource);
 			
 			if(recipe == null) {
 				
-				rp.count += rp.production;
+				rp.count += max;
 				
 			} else {
-				
-				long max = rp.production;
 				
 				for(var ing : recipe.getIngredients()) {
 					

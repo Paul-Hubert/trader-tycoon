@@ -15,9 +15,8 @@ function addProduction(resource) {
     $.post("/action", {"action":"addProduction", resource}, reload, "json").fail(error);
 }
 
-function changeResearch(resource) {
-	console.log(resource);
-    $.post("/action", {"action":"changeResearch", resource}, reload, "json").fail(error);
+function changeResearch(resource, element) {
+    $.post("/action", {"action":"changeResearch", resource, "cost":element.value}, reload, "json").fail(error);
 }
 
 
@@ -29,8 +28,6 @@ function search() {
 	let price = $("#search [name='price']").val();
 	let quantity = $("#search [name='quantity']").val();
 	
-	console.log(buy);
-	
 	$.post("/action", {"action":"search", resource, buy, price, quantity}, reload, "json").fail(error);
 }
 
@@ -40,13 +37,11 @@ function publish() {
 	let price = $("#search [name='price']").val();
 	let quantity = $("#search [name='quantity']").val();
 	
-	
 	$.post("/action", {"action":"publish", resource, buy, price, quantity}, reload, "json").fail(error);
 }
 
 
 function deleteOffer(e) {
-	console.log(e, $(e));
 	let id = $(e).attr("for");
 	
 	$.post("/action", {"action":"delete", id}, reload, "json").fail(error);
@@ -65,8 +60,8 @@ function reload(data) {
         $("#" + res.name + " .price").html(money(res.price));
         $("#" + res.name + " .production").html(res.production);
         $("#" + res.name + " .production-cost").html(money(res.production_cost));
-        $("#" + res.name + " .research").html(res.research);
-        $("#" + res.name + " .research-cost").attr('value', res.research_cost);
+        $("#" + res.name + " .research").html(money(res.research+10000));
+        $("#" + res.name + " .research-cost").attr('value', money(res.research_cost));
     }
     
     let offers = $("#offer-list");

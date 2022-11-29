@@ -93,9 +93,20 @@ public class ActionServlet extends HttpServlet {
 				
 				request.getRequestDispatcher("/update").forward(request, response);
 				return;
+			
+			} else if(action.equals("changeResearch")) {
+				
+				var resource = request.getParameter("resource");
+				Resource r = Resource.get(Integer.parseInt(resource));
+				ResourceProduction rp = user.getProduction().get(r);
+				
+				var cost = Money.parse(request.getParameter("cost"));
+				rp.research_cost = cost;
+				
+				rp.update();
 				
 			} else {
-				System.err.println("Unknow action : " + action);
+				System.err.println("Unknown action : " + action);
 			}
 			
 			request.getRequestDispatcher("/update").forward(request, response);
