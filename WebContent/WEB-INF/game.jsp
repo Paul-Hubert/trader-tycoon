@@ -50,8 +50,8 @@
 				<div class="navrow row">
 					<span class="navitem navbar-brand col">Game</span>
 					<span id="username" class="navitem navbar-text col"><%= user.name %></span>
-					<span class="navitem navbar-text col">$<span id="money" class="currency"><%=Money.format(user.money) %></span></span>
-					<span class="navitem navbar-text col-8">Top player : <span id="first"><%= User.getFirst() %></span></span>
+					<span class="navitem navbar-text col">$<span id="money" class="currency"></span></span>
+					<span class="navitem navbar-text col-8">Top player : <span id="first"></span></span>
 					
 					<form class="navitem col" method="post" action="/">
 						<button type="submit" name="action" value="logout"
@@ -93,15 +93,15 @@
 									}
 									%>
 									<%=craft %>
-									<h6 class="card-subtitle1 mb-2 text-muted">Price : $<span class="price"><%=Money.format(price) %></span></h6>
-							    	<h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"><%=rp.count %></span></h6>
-							    	<h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"><%=rp.production %></span></h6>
+									<h6 class="card-subtitle1 mb-2 text-muted">Price : $<span class="price"></span></h6>
+							    	<h6 class="card-subtitle1 mb-2 text-muted">Stock : <span class="count"></span></h6>
+							    	<h6 class="card-subtitle2 mb-2 text-muted">Production : <span class="production"></span></h6>
 									<div class="card-subtitle1 form-group text-muted">
 										<label class="card-subtitle1 form-check-label">Research investment : </label>
-					    				$<input type="number" data-type="currency" step=0.01 class="research-cost area mb-2" name="invest" onchange="changeResearch(<%=res.getID()%>, this)" value="<%=Money.format(rp.research_cost) %>">
+					    				$<input type="number" data-type="currency" step=0.01 class="research-cost area mb-2" name="invest" onchange="changeResearch(<%=res.getID()%>, this)" value="">
 					    			</div>
-							    	<h6 class="card-subtitle1 mb-2 text-muted">Production efficiency : <span class="research"><%=Money.format(rp.research+10000) %></span>%</h6>
-									<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production for $<span class="production-cost currency"><%=Money.format(rp.getProductionCost()) %></span></button>
+							    	<h6 class="card-subtitle1 mb-2 text-muted">Production efficiency : <span class="research"></span>%</h6>
+									<button onclick="addProduction(<%=res.getID()%>)" type="button" class="btn btn-secondary">Add production for $<span class="production-cost currency"></span></button>
 							  	</div>
 							</div>
 						</li>
