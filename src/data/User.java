@@ -186,15 +186,17 @@ public class User {
 		return money;
 	}
 	
-	public static String getFirst() throws Exception {
+	public static String firstUser;
+	public static long firstMoney;
+	
+	public static void getFirst() throws Exception {
 		Connection con = ConnectionProvider.getCon();
 		var ps = con.prepareStatement("select user, money from users order by money desc;");
 		
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		String name = rs.getString("user");
-		Long money = rs.getLong("money");
-		return name + " $"+Money.format(money);
+		firstUser = rs.getString("user");
+		firstMoney = rs.getLong("money");
 	}
 	
 	public void update() throws Exception {

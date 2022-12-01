@@ -9,11 +9,13 @@
 	<% } %>
 	<%
 	User user = (User) request.getAttribute("user");
+	User.getFirst();
 	%>
 	"user": "<%= user.name %>",
 	"user_id": "<%= user.id %>",
 	"money": <%= user.money %>,
-	"topPlayer": "<%= User.getFirst() %>",
+	"topPlayer": "<%= User.firstUser %>",
+	"topMoney": "<%= User.firstMoney %>",
 	"resources": {
 		<%
 		boolean first = true;

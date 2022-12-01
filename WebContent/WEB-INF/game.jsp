@@ -51,7 +51,7 @@
 					<span class="navitem navbar-brand col">Game</span>
 					<span id="username" class="navitem navbar-text col"><%= user.name %></span>
 					<span class="navitem navbar-text col">$<span id="money" class="currency"></span></span>
-					<span class="navitem navbar-text col-8">Top player : <span id="first"></span></span>
+					<span class="navitem navbar-text col-8">Top player : <span id="firstUser"></span> with $<span id="firstMoney"></span></span>
 					
 					<form class="navitem col" method="post" action="/">
 						<button type="submit" name="action" value="logout"

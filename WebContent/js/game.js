@@ -51,16 +51,17 @@ function deleteOffer(e) {
 
 function reload(data) {
     
-    $("#money").html(money(data.money));
- 	$("#first").html(data.topPlayer);
+    $("#money").html(formatMoney(data.money));
+ 	$("#firstUser").html(data.topPlayer);
+ 	$("#firstMoney").html(formatMoney(data.topMoney));
 
     for(let i in data.resources) {
     	let res = data.resources[i];
-        $("#" + res.name + " .count").html(res.count);
-        $("#" + res.name + " .price").html(money(res.price));
-        $("#" + res.name + " .production").html(res.production);
-        $("#" + res.name + " .production-cost").html(money(res.production_cost));
-        $("#" + res.name + " .research").html(money(res.research+10000));
+        $("#" + res.name + " .count").html(formatNumber(res.count));
+        $("#" + res.name + " .price").html(formatMoney(res.price));
+        $("#" + res.name + " .production").html(formatNumber(res.production));
+        $("#" + res.name + " .production-cost").html(formatMoney(res.production_cost));
+        $("#" + res.name + " .research").html(formatMoney(res.research+10000));
         $("#" + res.name + " .research-cost").attr('value', money(res.research_cost));
     }
     
@@ -81,9 +82,9 @@ function reload(data) {
 		
 		offer_card.attr("buy", offer.buy);
 		
-		$("#modify .price").html(money(offer.price));
+		$("#modify .price").html(formatMoney(offer.price));
 		
-		$("#modify .quantity").html(offer.quantity);
+		$("#modify .quantity").html(formatNumber(offer.quantity));
 		
 		let deleteButton = $("#modify .delete");
 		

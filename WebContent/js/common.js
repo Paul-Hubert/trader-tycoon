@@ -19,8 +19,17 @@ function updateCurrencySpy() {
 }
 
 function formatNumber(n) {
-  // format number 1000000 to 1,234,567
-  return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  // format number 1234567.89 to 1,234,567.89
+  n = n.toString();
+  let strs = n.split(".");
+  n = strs[0];
+  n = n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  if(strs.length>1) n+="."+strs[1];
+  return n;
+}
+
+function formatMoney(m) {
+	return formatNumber(money(m));
 }
 
 
@@ -93,6 +102,5 @@ function formatCurrency(input, blur) {
 
 
 function money(money) {
-	return (money/100.0);
-	//return (money/100.0).toFixed(2)+"$";
+	return money/100.0;
 }
