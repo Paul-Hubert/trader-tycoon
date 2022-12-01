@@ -23,7 +23,7 @@ public class Offers {
 		
 		Connection con = ConnectionProvider.getCon();
 		
-		PreparedStatement ps = con.prepareStatement("select * from offers where user_id=?;");
+		PreparedStatement ps = con.prepareStatement("select * from offers as o inner join users as u on u.id = o.user_id where user_id=?;");
 		ps.setLong(1, id);
 		
 		ResultSet rs=ps.executeQuery();
@@ -76,7 +76,7 @@ public class Offers {
 		Connection con = ConnectionProvider.getCon();
 		
 		{
-			PreparedStatement ps = con.prepareStatement("select * from offers where user_id=? and resource=? and buy=?;");
+			PreparedStatement ps = con.prepareStatement("select * from offers as o inner join users as u on u.id = o.user_id where user_id=? and resource=? and buy=?;");
 			ps.setLong(1, user_id);
 			ps.setInt(2, search.resource.getID());
 			ps.setBoolean(3, search.buy);
@@ -90,7 +90,7 @@ public class Offers {
 		}
 		
 		{
-			PreparedStatement ps = con.prepareStatement("select * from offers where resource=? and buy=? and user_id!=? order by price " + (search.buy ? "asc" : "desc") + " limit 10;");
+			PreparedStatement ps = con.prepareStatement("select * from offers as o inner join users as u on u.id = o.user_id where resource=? and buy=? and user_id!=? order by price " + (search.buy ? "asc" : "desc") + " limit 10;");
 			ps.setInt(1, search.resource.getID());
 			ps.setBoolean(2, !search.buy);
 			ps.setLong(3, user_id);

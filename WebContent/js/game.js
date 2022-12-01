@@ -88,12 +88,11 @@ function reload(data) {
 		
 		let deleteButton = $("#modify .delete");
 		
+		$("#modify .offerer").html(offer.user_name);
+		
 		if(offer.user_id == data.user_id) {
-			$("#modify .offerer").html(data.user);
 			deleteButton.attr("for", offer_id);
-			//delete.on("click", deleteOffer);
 		} else {
-			$("#modify .offerer").html("#"+offer.user_id);
 			deleteButton.attr("hidden", true);
 		}
 		

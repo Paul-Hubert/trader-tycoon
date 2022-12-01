@@ -46,7 +46,8 @@
 		%><%= first ? "" : "," %>
 			{
 				"id": <%=offer.id %>,
-				"user_id": <%=offer.user_id %>,
+				"user_id": "<%=offer.user_id %>",
+				"user_name": "<%=offer.user_name %>",
 				"res_id": "<%=offer.resource %>",
 				"buy": <%=offer.buy %>,
 				"price": <%=offer.price %>,

@@ -11,26 +11,29 @@ import database.ConnectionProvider;
 public class Offer {
 	public long id;
 	public final long user_id;
+	public final String user_name;
 	public final Resource resource;
 	public boolean buy;
 	public long price;
 	public long quantity;
 	
 	public Offer(long user_id, Resource resource, boolean buy, long price, long quantity) {
-		this(-1L, user_id, resource, buy, price, quantity);
+		this(-1L, user_id, null, resource, buy, price, quantity);
 	}
 	
-	public Offer(long id, long user_id, Resource resource, boolean buy, long price, long quantity) {
+	public Offer(long id, long user_id, String user_name, Resource resource, boolean buy, long price, long quantity) {
 		this.id = id;
 		this.user_id = user_id;
 		this.resource = resource;
 		this.buy = buy;
 		this.price = price;
 		this.quantity = quantity;
+		this.user_name = user_name;
 	}
 	
 	public static Offer create(ResultSet rs) throws Exception {
-		return new Offer(rs.getLong("id"), rs.getLong("user_id"), Resource.get(rs.getInt("resource")), rs.getBoolean("buy"), rs.getLong("price"), rs.getLong("quantity"));
+		String user_name = rs.getString("u.user");
+		return new Offer(rs.getLong("id"), rs.getLong("user_id"), user_name, Resource.get(rs.getInt("resource")), rs.getBoolean("buy"), rs.getLong("price"), rs.getLong("quantity"));
 	}
 	
 	public void insert() throws Exception {

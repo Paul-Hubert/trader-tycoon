@@ -118,17 +118,17 @@
 					<form id="search" class="auto-submit" method="post" action="/action">
 					
 						<div class="form-check form-check-inline mb-2">
-							<input class="form-check-input" type="radio" name="achat_vente" value="true" required checked>
+							<input class="form-check-input" type="radio" name="achat_vente" value="true" onchange="search()" required checked>
 					  		<label class="form-check-label">Buy</label>
 						</div>
 						
 						<div class="form-check form-check-inline mb-2">
-					  		<input class="form-check-input" type="radio" name="achat_vente" value="false" required>
+					  		<input class="form-check-input" type="radio" name="achat_vente" value="false" onchange="search()" required>
 					  		<label class="form-check-label">Sell</label>
 						</div>
 						
 						<div class="form-group">
-							<select class="custom-select mb-2" name="resource" required>
+							<select class="custom-select mb-2" name="resource" onchange="search()" required>
 						      	
 						      	<%
 								for (Resource res : Resource.values()) {
