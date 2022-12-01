@@ -37,7 +37,7 @@ public class Market {
 	}
 	
 	public static long price(Resource res) {
-		return prices[res.getID()];		
+		return prices[res.getID()];
 	}
 	
 	public static void step(ScheduledExecutorService scheduler) throws Exception {
@@ -150,8 +150,6 @@ public class Market {
 					continue;
 				}
 				
-				
-				
 				PreparedStatement buyerUpdate = con.prepareStatement("update users as u, production as p set u.money=u.money-?, p.count=p.count+? where p.resource=? and u.id=? and p.user_id=u.id");
 				buyerUpdate.setLong(1, cost);
 				buyerUpdate.setLong(2, amount);
@@ -177,7 +175,7 @@ public class Market {
 	public static void updatePrice() throws IOException, InterruptedException, ParseException {
 		
 		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create("https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=AAPL%2CFB%2CTSLA"))
+				.uri(URI.create("https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=WMT%2CAAPL%2CTSLA"))
 				.header("accept", "application/json")
 				.header("x-api-key", "nEJ9s0tymQ9pXFR6NPN1O4hUwllE0pek3I1aenBK")
 				.method("GET", HttpRequest.BodyPublishers.noBody())
@@ -192,7 +190,7 @@ public class Market {
 	    JSONObject obj = (JSONObject) data_obj.get("quoteResponse");
 		
 	    JSONArray result = (JSONArray) obj.get("result");
-		    
+		
 	    for (int i = 0; i < result.size(); i++) {
 	    	JSONObject data = (JSONObject) result.get(i);
 	    	long price = ((Double) (((double) data.get("regularMarketPrice")) * 100)).longValue();
