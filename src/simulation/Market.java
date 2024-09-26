@@ -177,7 +177,7 @@ public class Market {
 		HttpRequest request = HttpRequest.newBuilder()
 				.uri(URI.create("https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=WMT%2CAAPL%2CTSLA"))
 				.header("accept", "application/json")
-				.header("x-api-key", "nEJ9s0tymQ9pXFR6NPN1O4hUwllE0pek3I1aenBK")
+				.header("x-api-key", "Ad3Cs8Xv1Y2pOZ42as1ptyREYq2DyYOaajV0cUH3")
 				.method("GET", HttpRequest.BodyPublishers.noBody())
 				.build();
 			
